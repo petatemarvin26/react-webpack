@@ -1,0 +1,28 @@
+html,
+body,
+div,
+button,
+input,
+p {
+  padding: 0;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+div,
+button {
+  display: flex;
+  flex-direction: column;
+}
+
+body #root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+:root {
+  --BG: #0e0e0e;
+  --WHITE: #fff;
+}
