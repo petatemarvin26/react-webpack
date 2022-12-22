@@ -1,10 +1,7 @@
-declare module "*.module.css";
+export {};
 
-declare module "*.png";
-
-declare module "*.svg" {
-  const ReactComponent: React.ElementType<React.SVGAttributes<SVGElement>>;
-  const Svg: string;
-  export { ReactComponent };
-  export default Svg;
+declare global {
+  const google: any;
+  const FB: any;
+  const statusChangeCallback: any;
 }

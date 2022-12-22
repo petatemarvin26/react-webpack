@@ -4,7 +4,9 @@
     "target": "ES6",
     "module": "CommonJS",
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
+    "strict": true
   },
-  "include": ["./src/**/*", "global.d.ts", "*.svg"]
+  "include": ["./src/**/*", "./global.d.ts", "./module.d.ts", "./.eslintrc.js"],
+  "exclude": ["./node_modules"]
 }
