@@ -4,6 +4,6 @@ build
 # dependencies
 node_modules
 
-# environments
+
 .env*
 !.env.sample
