@@ -13,7 +13,6 @@ module.exports = () => {
     compress: true,
     historyApiFallback: true,
     port: 3000,
-    host: '0.0.0.0',
     allowedHosts: ['all']
   };
   const module = {
