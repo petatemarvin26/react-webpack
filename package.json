@@ -1,7 +1,7 @@
 {
   "name": "react-webpack",
   "version": "1.0.0",
-  "description": "Note this is template for scratch project of react with webpack, anything that is not necessary you may change it.",
+  "description": "This is React Application with Webpack configuration.",
   "private": true,
   "scripts": {
     "start": "webpack serve --env env=dev variant=dev --config configs/webpack/webpack.config.js",

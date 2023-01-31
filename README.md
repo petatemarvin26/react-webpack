@@ -6,8 +6,9 @@
 
 ### Description
 
-This boilerplate are powered by `Webpack`, `Babel`,
-`ESlint` and `React` library
+This project is for template purposes that powered by `Webpack`, `Babel`,`ESlint` and `React` library,
+
+We setup partially what you need, you can delete all unnecessary files, syntax that you are surely has no sense on your setup and you may add some configuration depends on what you need, this scratch project template in React with Webpack can be able to use as your own project start up
 
 ### Goals
 
@@ -93,4 +94,4 @@ Now you can start the bundler using `npm start` and open the web application
 
 ### Empower Us
 
-As a new contributor who helps other devs on their queries about scratch works, here is my configuration set up at React using Webpack
+As a new contributor who helps other devs on their queries about scratch works, here is my configuration setup at React using Webpack
