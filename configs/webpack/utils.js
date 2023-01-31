@@ -1,12 +1,25 @@
 const dotenv = require('dotenv');
-const {SVG_REGEX, FILE_REGEX, HOST, PORT} = require('./constants');
-
-module.exports = {};
+const {
+  SVG_REGEX,
+  FILE_REGEX,
+  HOST,
+  PORT,
+  SOURCE_REGEX,
+  STYLE_REGEX
+} = require('./constants');
 
 const isSvg = (file) => SVG_REGEX.test(file);
 const isImage = (file) => FILE_REGEX.test(file);
 
 const isDevelopment = (env) => env === 'dev';
+
+const assetFilter = (assetFilename) => {
+  return (
+    SOURCE_REGEX.test(assetFilename) ||
+    STYLE_REGEX.test(assetFilename) ||
+    SVG_REGEX.test(assetFilename)
+  );
+};
 
 const assetOutputPath = (url, resource) => {
   if (isSvg(resource)) {
@@ -47,6 +60,7 @@ module.exports = {
   isImage,
   isDevelopment,
   assetOutputPath,
+  assetFilter,
   copyMetaFiles,
   getVersion,
   getNodeEnv,
