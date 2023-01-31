@@ -1,6 +1,4 @@
-## Reac with Webpack Setup
-
----
+# React with Webpack Setup
 
 ### Author
 
@@ -22,7 +20,7 @@ development process to our developers and make them selves familliar with
 
 #
 
-## Setup Development
+### Setup Development
 
 #### Step 1:
 
@@ -42,11 +40,11 @@ touch .env.dev # .env.dev ENV='development' VERSION='1.0.1'
 
 #
 
-## Configure into Javascript
+### Configure into Javascript
 
 #### Step 1:
 
-In [webpack/constants.js](webpack/constants.js) replace the source regex into js or jsx
+In [webpack/constants.js](configs/webpack/constants.js) replace the source regex into js or jsx
 
 ```Javascript
 // before
@@ -57,7 +55,7 @@ const SOURCE_REGEX = /\.(js|jsx)$/i;
 
 #### Step 2:
 
-In [webpack/webpack.config.js](webpack/webpack.config.js) replace the entry point from tsx into jsx or js depends on what you put on your index at [src](src) directory
+In [webpack/webpack.config.js](configs/webpack/webpack.config.js) replace the entry point from tsx into jsx or js depends on what you put on your index at [src](src) directory
 
 ```javascript
 // before
@@ -68,7 +66,7 @@ const entry = `${ROOT_DIR}/src/index.jsx`;
 
 #### Step 3:
 
-In [webpack/webpack.dev.js](webpack/webpack.dev.js) and [webpack/webpack.prod.js](webpack/webpack.prod.js) inside the `config.module.rules[0]` remove the `ts-loader` because it doesn't make sense using this loader since we are using javascript
+In [webpack/webpack.dev.js](configs/webpack/webpack.dev.js) and [webpack/webpack.prod.js](configs/webpack/webpack.prod.js) inside the `config.module.rules[0]` remove the `ts-loader` because it doesn't make sense using this loader since we are using javascript
 
 ```javascript
 // at rules 0 index
@@ -93,6 +91,6 @@ Now you can start the bundler using `npm start` and open the web application
 
 #
 
-## Empower Us
+### Empower Us
 
 As a new contributor who helps other devs on their queries about scratch works, here is my configuration set up at React using Webpack
