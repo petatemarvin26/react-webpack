@@ -4,19 +4,18 @@ const {merge} = require('webpack-merge');
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
 const {
+  isDevelopment,
+  assetOutputPath,
+  getEnv,
+  copyMetaFiles
+} = require('./utils');
+const {
   ROOT_DIR,
   STYLE_REGEX,
   SVG_REGEX,
   FILE_REGEX,
   JS_REGEX
 } = require('./constants');
-const {
-  isDevelopment,
-  assetOutputPath,
-  getVersion,
-  getPublicUrl,
-  getNodeEnv
-} = require('./utils');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -31,17 +30,13 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
 
-  let dotenv = require('dotenv').config({path: `./.env.${variant}`});
-  dotenv.parsed['VERSION'] = getVersion();
-  dotenv.parsed['PUBLIC_URL'] = getPublicUrl(dotenv);
-  dotenv.parsed['NODE_ENV'] = getNodeEnv(dotenv);
+  const process_env = getEnv(env, variant).parsed;
+  const {PUBLIC_URL, ENV} = process_env;
 
-  const entry = {
-    index: `${ROOT_DIR}/src/index.tsx`
-  };
+  const entry = `${ROOT_DIR}/src/index.tsx`;
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
-    publicPath: `${dotenv.parsed['PUBLIC_URL']}/`,
+    publicPath: `${PUBLIC_URL}/`,
     path: `${ROOT_DIR}/build`,
     clean: true
   };
@@ -64,23 +59,20 @@ module.exports = (webpack_env) => {
   };
   const plugins = [
     new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed)
+      'process.env': JSON.stringify(process_env)
     }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: `${ROOT_DIR}/public/index.html`,
-      publicPath: dotenv.parsed['PUBLIC_URL']
+      publicPath: PUBLIC_URL
     }),
-    new InterpolateHtmlPlugin({
-      PUBLIC_URL: dotenv.parsed['PUBLIC_URL'],
-      NODE_ENV: dotenv.parsed['NODE_ENV']
-    }),
+    new InterpolateHtmlPlugin({PUBLIC_URL, ENV}),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: `${ROOT_DIR}/public`,
           to: `${ROOT_DIR}/build`,
-          filter: (filepath) => !filepath.endsWith('.html')
+          filter: copyMetaFiles
         }
       ]
     }),
