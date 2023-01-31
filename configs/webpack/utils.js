@@ -37,26 +37,26 @@ const getVersion = () => {
   return process.env.npm_package_version;
 };
 const getPublicUrl = (local_env) => {
-  return local_env.parsed['PUBLIC_URL'] || `http://${HOST}:${PORT}`;
+  return local_env ? local_env['PUBLIC_URL'] : `http://${HOST}:${PORT}`;
 };
 const getNodeEnv = (local_env) => {
-  return local_env.parsed['ENV'] || 'development';
+  return local_env ? local_env['ENV'] : 'development';
 };
 const getEnv = (env, variant) => {
   const config = {path: `${ROOT_DIR}/.env.${variant}`};
 
   if (env === 'dev' && variant === 'dev') config.path = `${ROOT_DIR}/.env`;
 
-  let ENV = dotenv.config(config);
+  const ENV_CONFIG = dotenv.config(config);
+  let ENV = {parsed: {}};
 
-  if (ENV.error) {
-    config.path = `${ROOT_DIR}/.env`;
-    ENV = dotenv.config(config);
+  if (ENV_CONFIG.error) {
+    ENV.parsed['VERSION'] = getVersion();
+    ENV.parsed['PUBLIC_URL'] = getPublicUrl(ENV_CONFIG.parsed);
+    ENV.parsed['ENV'] = getNodeEnv(ENV_CONFIG.parsed);
+  } else {
+    ENV = ENV_CONFIG;
   }
-
-  ENV.parsed['VERSION'] = getVersion();
-  ENV.parsed['PUBLIC_URL'] = getPublicUrl(ENV);
-  ENV.parsed['ENV'] = getNodeEnv(ENV);
 
   return ENV;
 };
