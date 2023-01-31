@@ -82,7 +82,7 @@ module.exports = (webpack_env) => {
     new ESLintWebpackPlugin({
       resolvePluginsRelativeTo: `${ROOT_DIR}/src`,
       context: `${ROOT_DIR}/src`,
-      overrideConfigFile: `${ROOT_DIR}/.eslintrc.js`,
+      overrideConfigFile: `${ROOT_DIR}/configs/.eslintrc.js`,
       extensions: ['ts', 'tsx', 'js', 'jsx']
     })
   ];

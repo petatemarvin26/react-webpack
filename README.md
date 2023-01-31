@@ -89,7 +89,7 @@ In [webpack/webpack.dev.js](webpack/webpack.dev.js) and [webpack/webpack.prod.js
 
 #### Step 4:
 
-Now you can start the bundler using `npm start` and open the web pplication
+Now you can start the bundler using `npm start` and open the web application
 
 #
 

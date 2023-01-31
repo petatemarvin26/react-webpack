@@ -1,5 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {SOURCE_REGEX, STYLE_REGEX, MAX_SIZE, SVG_REGEX} = require('./constants');
+
+const {SOURCE_REGEX, STYLE_REGEX, MAX_SIZE} = require('./constants');
+const { assetFilter } = require('./utils');
 
 module.exports = {
   mode: 'production',
@@ -21,12 +23,6 @@ module.exports = {
   performance: {
     maxEntrypointSize: MAX_SIZE,
     maxAssetSize: MAX_SIZE,
-    assetFilter: (assetFilename) => {
-      return (
-        SOURCE_REGEX.test(assetFilename) ||
-        STYLE_REGEX.test(assetFilename) ||
-        SVG_REGEX.test(assetFilename)
-      );
-    }
+    assetFilter
   }
 };
