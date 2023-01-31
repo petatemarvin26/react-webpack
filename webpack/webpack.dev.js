@@ -8,9 +8,9 @@ module.exports = {
   devServer: {
     open: true,
     compress: true,
-    port: 3000,
+    hot: true,
     historyApiFallback: true,
-    hot: true
+    port: 3000
   },
   module: {
     rules: [

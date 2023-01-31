@@ -1,19 +1,16 @@
 {
   "name": "react-webpack",
   "version": "1.0.0",
-  "description": "Note this is template for start scratch of react with webpack, anything that is not necessary you may change it.",
+  "description": "Note this is template for scratch project of react with webpack, anything that is not necessary you may change it.",
   "private": true,
   "scripts": {
     "start": "webpack serve --env env=dev variant=dev --config webpack/webpack.config.js",
     "eslint": "npx eslint ./src",
-    "build:dev": "rm -rf build -r; webpack build --env env=prod variant=dev --config webpack/webpack.config.js",
-    "build:uat": "rm -rf build -r; webpack build --env env=prod variant=uat --config webpack/webpack.config.js",
-    "build:prod": "rm -rf build -r; webpack build --env env=prod variant=prod --config webpack/webpack.config.js"
-    "start": "webpack serve --env env=dev variant=dev --config webpack/webpack.config.js",
-    "eslint": "npx eslint ./src",
-    "build:dev": "rm -rf build -r; webpack build --env env=prod variant=dev --config webpack/webpack.config.js",
-    "build:uat": "rm -rf build -r; webpack build --env env=prod variant=uat --config webpack/webpack.config.js",
-    "build:prod": "rm -rf build -r; webpack build --env env=prod variant=prod --config webpack/webpack.config.js"
+    "clean": "rm -rf build",
+    "build": "npm run clean; webpack build --env env=prod variant=dev --config webpack/webpack.config.js",
+    "build:dev": "npm run clean; webpack build --env env=prod variant=dev --config webpack/webpack.config.js",
+    "build:uat": "npm run clean; webpack build --env env=prod variant=uat --config webpack/webpack.config.js",
+    "build:prod": "npm run clean; webpack build --env env=prod variant=prod --config webpack/webpack.config.js"
   },
   "keywords": [
     "scratch",

@@ -1,9 +1,10 @@
-# production
+# dist or buil production
 build
+
+# dependencies
 
 # dependencies
 node_modules
 
-
+# environments
 .env*
-!.env.sample
