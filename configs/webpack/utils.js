@@ -5,7 +5,8 @@ const {
   HOST,
   PORT,
   SOURCE_REGEX,
-  STYLE_REGEX
+  STYLE_REGEX,
+  ROOT_DIR
 } = require('./constants');
 
 const isSvg = (file) => SVG_REGEX.test(file);
@@ -42,11 +43,16 @@ const getNodeEnv = (local_env) => {
   return local_env.parsed['ENV'] || 'development';
 };
 const getEnv = (env, variant) => {
-  const config = {path: `./.env.${variant}`};
+  const config = {path: `${ROOT_DIR}/.env.${variant}`};
 
-  if (env === 'dev' && variant === 'dev') config.path = './.env';
+  if (env === 'dev' && variant === 'dev') config.path = `${ROOT_DIR}/.env`;
 
-  const ENV = dotenv.config(config);
+  let ENV = dotenv.config(config);
+
+  if (ENV.error) {
+    config.path = `${ROOT_DIR}/.env`;
+    ENV = dotenv.config(config);
+  }
 
   ENV.parsed['VERSION'] = getVersion();
   ENV.parsed['PUBLIC_URL'] = getPublicUrl(ENV);
@@ -60,6 +66,7 @@ module.exports = {
   isImage,
   isDevelopment,
   assetOutputPath,
+  assetFilter,
   assetFilter,
   copyMetaFiles,
   getVersion,
