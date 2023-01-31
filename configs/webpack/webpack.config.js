@@ -17,13 +17,11 @@ const {
   JS_REGEX
 } = require('./constants');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const {default: TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
@@ -31,15 +29,8 @@ module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
 
   const process_env = getEnv(env, variant).parsed;
-  const {PUBLIC_URL, ENV} = process_env;
 
   const entry = `${ROOT_DIR}/src/index.tsx`;
-  const output = {
-    filename: 'static/js/[contenthash:10].bundle.js',
-    publicPath: `${PUBLIC_URL}/`,
-    path: `${ROOT_DIR}/build`,
-    clean: true
-  };
   const module = {
     rules: [
       {
@@ -62,11 +53,6 @@ module.exports = (webpack_env) => {
       'process.env': JSON.stringify(process_env)
     }),
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: `${ROOT_DIR}/public/index.html`,
-      publicPath: PUBLIC_URL
-    }),
-    new InterpolateHtmlPlugin({PUBLIC_URL, ENV}),
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -113,7 +99,6 @@ module.exports = (webpack_env) => {
 
   let config = {
     entry,
-    output,
     module,
     plugins,
     resolve,
@@ -121,7 +106,7 @@ module.exports = (webpack_env) => {
   };
 
   if (isDevelopment(env)) {
-    return merge(config, devConfig);
+    return merge(config, devConfig(process_env));
   }
-  return merge(config, prodConfig);
+  return merge(config, prodConfig(process_env));
 };
