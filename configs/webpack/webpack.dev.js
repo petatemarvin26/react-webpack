@@ -1,8 +1,11 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {STYLE_REGEX, SOURCE_REGEX, ROOT_DIR} = require('./constants');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
-module.exports = () => {
+const {STYLE_REGEX, SOURCE_REGEX, ROOT_DIR, PORT} = require('./constants');
+
+module.exports = (process_env) => {
+  const {ENV} = process_env;
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
     path: `${ROOT_DIR}/build`,
@@ -12,7 +15,7 @@ module.exports = () => {
     open: true,
     compress: true,
     historyApiFallback: true,
-    port: 3000,
+    port: PORT,
     allowedHosts: ['all']
   };
   const module = {
@@ -52,7 +55,8 @@ module.exports = () => {
     new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: `${ROOT_DIR}/public/index.html`
-    })
+    }),
+    new InterpolateHtmlPlugin({PUBLIC_URL: '', ENV})
     // new BundleAnalyzerPlugin()
   ];
 

@@ -1,6 +1,14 @@
 const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const {default: TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
 const {
@@ -16,14 +24,6 @@ const {
   FILE_REGEX,
   JS_REGEX
 } = require('./constants');
-
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-const {default: TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
