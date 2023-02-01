@@ -84,7 +84,7 @@ In [webpack/webpack.dev.js](configs/webpack/webpack.dev.js) and [webpack/webpack
 },
 ```
 
-> NOTE: You may also uninstall this loader in package.json at devDependencies
+> NOTE: You may also uninstall this loader
 
 #### Step 4:
 
