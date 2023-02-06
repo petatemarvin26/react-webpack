@@ -1,6 +1,8 @@
 module.exports = {
   env: {
     browser: true,
+    amd: true,
+    node: true,
     es2021: true
   },
   extends: [
@@ -22,8 +24,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
     '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/ban-types': 'off'
+    '@typescript-eslint/no-explicit-any': 'off'
   },
   settings: {
     react: {

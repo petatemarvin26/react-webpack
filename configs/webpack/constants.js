@@ -3,7 +3,7 @@ const path = require('path');
 const HOST = 'localhost';
 const PORT = 3000;
 
-const ROOT_DIR = path.resolve(__dirname, '../..'); // because the webpack configurations are in ./webpack
+const ROOT_DIR = path.resolve(__dirname, '../..');
 
 const FILE_REGEX = /\.(png|jpg|jpeg|gif|ico|svg)$/i;
 const SVG_REGEX = /\.(svg)$/i;
