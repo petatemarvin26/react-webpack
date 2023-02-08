@@ -9,6 +9,7 @@ module.exports = (process_env) => {
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
     path: `${ROOT_DIR}/build`,
+    publicPath: 'auto',
     clean: true
   };
   const devServer = {
