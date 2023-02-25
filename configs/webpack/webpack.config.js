@@ -14,23 +14,18 @@ const prodConfig = require('./webpack.prod');
 const {
   isDevelopment,
   assetOutputPath,
-  getEnv,
-  copyMetaFiles
+  copyMetaFiles,
+  namespace,
+  getEnv
 } = require('./utils');
-const {
-  ROOT_DIR,
-  STYLE_REGEX,
-  SVG_REGEX,
-  FILE_REGEX,
-  JS_REGEX
-} = require('./constants');
+const {STYLE_REGEX, SVG_REGEX, FILE_REGEX, JS_REGEX} = require('./constants');
 
 module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
 
   const process_env = getEnv(env, variant).parsed;
 
-  const entry = `${ROOT_DIR}/src/index.tsx`;
+  const entry = namespace('src/index.tsx');
   const module = {
     rules: [
       {
@@ -56,8 +51,8 @@ module.exports = (webpack_env) => {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: `${ROOT_DIR}/public`,
-          to: `${ROOT_DIR}/build`,
+          from: namespace('public'),
+          to: namespace('build'),
           filter: copyMetaFiles
         }
       ]
@@ -66,9 +61,9 @@ module.exports = (webpack_env) => {
       filename: `static/css/[contenthash:10].styles.css`
     }),
     new ESLintWebpackPlugin({
-      resolvePluginsRelativeTo: `${ROOT_DIR}/src`,
-      context: `${ROOT_DIR}/src`,
-      overrideConfigFile: `${ROOT_DIR}/configs/.eslintrc.js`,
+      resolvePluginsRelativeTo: namespace('src'),
+      context: namespace('src'),
+      overrideConfigFile: namespace('configs/.eslintrc.js'),
       extensions: ['ts', 'tsx', 'js', 'jsx']
     })
   ];

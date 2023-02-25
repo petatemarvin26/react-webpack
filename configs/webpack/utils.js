@@ -9,11 +9,6 @@ const {
   ROOT_DIR
 } = require('./constants');
 
-const isSvg = (file) => SVG_REGEX.test(file);
-const isImage = (file) => FILE_REGEX.test(file);
-
-const isDevelopment = (env) => env === 'dev';
-
 const assetFilter = (assetFilename) => {
   return (
     SOURCE_REGEX.test(assetFilename) ||
@@ -21,6 +16,12 @@ const assetFilter = (assetFilename) => {
     SVG_REGEX.test(assetFilename)
   );
 };
+
+const isSvg = (file) => SVG_REGEX.test(file);
+
+const isImage = (file) => FILE_REGEX.test(file);
+
+const isDevelopment = (env) => env === 'dev';
 
 const assetOutputPath = (url, resource) => {
   if (isSvg(resource)) {
@@ -36,12 +37,15 @@ const copyMetaFiles = (filepath) => !filepath.endsWith('.html');
 const getVersion = () => {
   return process.env.npm_package_version;
 };
+
 const getPublicUrl = (local_env) => {
   return local_env ? local_env['PUBLIC_URL'] : `http://${HOST}:${PORT}`;
 };
+
 const getNodeEnv = (local_env) => {
   return local_env ? local_env['ENV'] : 'development';
 };
+
 const getEnv = (env, variant) => {
   const config = {path: `${ROOT_DIR}/.env.${variant}`};
 
@@ -61,6 +65,10 @@ const getEnv = (env, variant) => {
   return ENV;
 };
 
+const namespace = (path = '') => {
+  return ROOT_DIR + `/${path}`;
+};
+
 module.exports = {
   isSvg,
   isImage,
@@ -72,5 +80,6 @@ module.exports = {
   getVersion,
   getNodeEnv,
   getPublicUrl,
-  getEnv
+  getEnv,
+  namespace
 };
