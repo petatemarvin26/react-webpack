@@ -17,6 +17,7 @@ module.exports = (process_env) => {
     compress: true,
     historyApiFallback: true,
     port: PORT,
+    hot: false,
     allowedHosts: ['all']
   };
   const module = {
