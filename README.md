@@ -45,6 +45,17 @@ touch .env.dev # .env.dev ENV='development' VERSION='1.0.1'
 
 #### Step 1:
 
+In [webpack/constants.js](configs/webpack/constants.js) change the `SOURCE_REGEX`
+
+```javascript
+// before
+const SOURCE_REGEX = /\.(ts|tsx)$/i;
+// after
+const SOURCE_REGEX = /\.(js|jsx)$/i;
+```
+
+#### Step 2:
+
 In [webpack/webpack.config.js](configs/webpack/webpack.config.js) replace the entry point from tsx into jsx or js depends on what you put on your index at [src](src) directory
 
 ```javascript
@@ -54,12 +65,11 @@ const entry = resolver('src/index.tsx');
 const entry = resolver('src/index.jsx');
 ```
 
-#### Step 2:
+#### Step 3:
 
-In [webpack/webpack.config.js](configs/webpack/webpack.config.js) change the `config.module.rules[0]` remove the `ts-loader` because it doesn't make sense using this loader since we are using javascript
+In [webpack/webpack.config.js](configs/webpack/webpack.config.js) change the `config.module.rules` change `ts-loader` to `babel-loader` and add the option of `configFile`
 
 ```javascript
-// at rules 0 index
 {
   test: SOURCE_REGEX,
   loader: 'babel-loader',
@@ -71,7 +81,7 @@ In [webpack/webpack.config.js](configs/webpack/webpack.config.js) change the `co
 
 > NOTE: You may also uninstall this loader
 
-#### Step 3:
+#### Step 4:
 
 Now you can start the bundler using `npm start` and open the web application
 
