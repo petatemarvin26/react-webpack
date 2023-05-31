@@ -2,14 +2,14 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
-const {STYLE_REGEX, SOURCE_REGEX, PORT} = require('./constants');
-const {namespace} = require('./utils');
+const {STYLE_REGEX, PORT} = require('./constants');
+const {resolver} = require('./utils');
 
 module.exports = (process_env) => {
   const {ENV} = process_env;
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
-    path: namespace('build'),
+    path: resolver('build'),
     publicPath: 'auto',
     clean: true
   };
@@ -23,19 +23,6 @@ module.exports = (process_env) => {
   };
   const module = {
     rules: [
-      {
-        test: SOURCE_REGEX,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              plugins: ['react-refresh/babel']
-            }
-          },
-          'source-map-loader',
-          'ts-loader'
-        ]
-      },
       {
         test: STYLE_REGEX,
         use: [
@@ -57,7 +44,7 @@ module.exports = (process_env) => {
   const plugins = [
     new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: namespace('public/index.html')
+      template: resolver('public/index.html')
     }),
     new InterpolateHtmlPlugin({PUBLIC_URL: '', ENV})
     // new BundleAnalyzerPlugin()

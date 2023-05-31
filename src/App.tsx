@@ -1,7 +1,12 @@
 import 'App.css';
 
 const App: React.FC = () => {
-  return <div>HELLO WORLD</div>;
+  return (
+    <div>
+      <p>HELLO WORLD</p>
+      <button>CLICK</button>
+    </div>
+  );
 };
 
 export default App;

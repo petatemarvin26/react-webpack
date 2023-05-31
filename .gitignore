@@ -2,9 +2,11 @@
 build
 
 # dependencies
-
-# dependencies
 node_modules
 
 # environments
 .env*
+
+# test chunks
+test
+

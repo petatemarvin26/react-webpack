@@ -15,19 +15,31 @@ const {
   isDevelopment,
   assetOutputPath,
   copyMetaFiles,
-  namespace,
+  resolver,
   getEnv
 } = require('./utils');
-const {STYLE_REGEX, SVG_REGEX, FILE_REGEX, JS_REGEX} = require('./constants');
+const {
+  STYLE_REGEX,
+  SVG_REGEX,
+  FILE_REGEX,
+  JS_REGEX,
+  SOURCE_REGEX
+} = require('./constants');
 
 module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
 
   const process_env = getEnv(env, variant).parsed;
+  
+  const entry = resolver('src/index.tsx');
 
-  const entry = namespace('src/index.tsx');
   const module = {
     rules: [
+      {
+        test: SOURCE_REGEX,
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: SVG_REGEX,
         loader: '@svgr/webpack'
@@ -51,8 +63,8 @@ module.exports = (webpack_env) => {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: namespace('public'),
-          to: namespace('build'),
+          from: resolver('public'),
+          to: resolver('build'),
           filter: copyMetaFiles
         }
       ]
@@ -61,9 +73,9 @@ module.exports = (webpack_env) => {
       filename: `static/css/[contenthash:10].styles.css`
     }),
     new ESLintWebpackPlugin({
-      resolvePluginsRelativeTo: namespace('src'),
-      context: namespace('src'),
-      overrideConfigFile: namespace('configs/.eslintrc.js'),
+      resolvePluginsRelativeTo: resolver('src'),
+      context: resolver('src'),
+      overrideConfigFile: resolver('configs/.eslintrc.js'),
       extensions: ['ts', 'tsx', 'js', 'jsx']
     })
   ];
@@ -93,6 +105,7 @@ module.exports = (webpack_env) => {
   };
 
   let config = {
+    target: 'web',
     entry,
     module,
     plugins,
