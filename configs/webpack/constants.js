@@ -8,7 +8,7 @@ const ROOT_DIR = path.resolve(__dirname, '../..');
 const FILE_REGEX = /\.(png|jpg|jpeg|gif|ico|svg)$/i;
 const SVG_REGEX = /\.(svg)$/i;
 const STYLE_REGEX = /\.(css|scss)$/i;
-const SOURCE_REGEX = /\.(ts|tsx)$/i;
+const SOURCE_REGEX = /\.(ts|tsx|js|jsx)$/i;
 const JS_REGEX = /\.(js|jsx|ts|tsx)$/i;
 
 const MAX_SIZE = 326000;

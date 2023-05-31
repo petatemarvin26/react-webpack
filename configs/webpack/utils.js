@@ -65,7 +65,7 @@ const getEnv = (env, variant) => {
   return ENV;
 };
 
-const namespace = (path = '') => {
+const resolver = (path = '') => {
   return ROOT_DIR + `/${path}`;
 };
 
@@ -81,5 +81,5 @@ module.exports = {
   getNodeEnv,
   getPublicUrl,
   getEnv,
-  namespace
+  resolver
 };
