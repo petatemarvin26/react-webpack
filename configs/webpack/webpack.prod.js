@@ -2,16 +2,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const {SOURCE_REGEX, STYLE_REGEX, MAX_SIZE, ROOT_DIR} = require('./constants');
-const {assetFilter} = require('./utils');
+const {SOURCE_REGEX, STYLE_REGEX, MAX_SIZE} = require('./constants');
+const {assetFilter, namespace} = require('./utils');
 
 module.exports = (process_env) => {
   const {PUBLIC_URL, ENV} = process_env;
 
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
-    publicPath: `${PUBLIC_URL}/`,
-    path: `${ROOT_DIR}/build`,
+    publicPath: namespace(),
+    path: namespace('build'),
     clean: true
   };
   const module = {
@@ -30,7 +30,7 @@ module.exports = (process_env) => {
   const plugins = [
     new InterpolateHtmlPlugin({PUBLIC_URL, ENV}),
     new HtmlWebpackPlugin({
-      template: `${ROOT_DIR}/public/index.html`,
+      template: namespace('public/index.html'),
       publicPath: PUBLIC_URL
     })
   ];

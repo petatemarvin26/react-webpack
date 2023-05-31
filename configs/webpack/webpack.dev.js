@@ -2,13 +2,14 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
-const {STYLE_REGEX, SOURCE_REGEX, ROOT_DIR, PORT} = require('./constants');
+const {STYLE_REGEX, SOURCE_REGEX, PORT} = require('./constants');
+const {namespace} = require('./utils');
 
 module.exports = (process_env) => {
   const {ENV} = process_env;
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
-    path: `${ROOT_DIR}/build`,
+    path: namespace('build'),
     publicPath: 'auto',
     clean: true
   };
@@ -56,7 +57,7 @@ module.exports = (process_env) => {
   const plugins = [
     new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: `${ROOT_DIR}/public/index.html`
+      template: namespace('public/index.html')
     }),
     new InterpolateHtmlPlugin({PUBLIC_URL: '', ENV})
     // new BundleAnalyzerPlugin()
