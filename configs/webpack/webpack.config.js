@@ -30,7 +30,7 @@ module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
 
   const process_env = getEnv(env, variant).parsed;
-  
+
   const entry = resolver('src/index.tsx');
 
   const module = {
