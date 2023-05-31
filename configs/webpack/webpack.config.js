@@ -22,7 +22,6 @@ const {
   STYLE_REGEX,
   SVG_REGEX,
   FILE_REGEX,
-  JS_REGEX,
   SOURCE_REGEX
 } = require('./constants');
 
@@ -95,7 +94,7 @@ module.exports = (webpack_env) => {
       new CssMinimizerPlugin({parallel: 2, include: STYLE_REGEX}),
       new TerserPlugin({
         parallel: 2,
-        include: JS_REGEX,
+        include: SOURCE_REGEX,
         terserOptions: {
           mangle: true,
           output: {beautify: false}
