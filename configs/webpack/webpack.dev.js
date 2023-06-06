@@ -2,8 +2,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 
-const {STYLE_REGEX, PORT} = require('./constants');
-const {resolver} = require('./utils');
+const {STYLE_REGEX, PORT, FILE_REGEX} = require('./constants');
+const {resolver, assetOutputPath} = require('./utils');
 
 module.exports = (process_env) => {
   const {ENV} = process_env;
