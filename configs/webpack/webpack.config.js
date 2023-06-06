@@ -7,22 +7,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const {default: TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
-const {
-  isDevelopment,
-  copyMetaFiles,
-  resolver,
-  getEnv
-} = require('./utils');
-const {
-  STYLE_REGEX,
-  SVG_REGEX,
-  SOURCE_REGEX,
-  FILE_REGEX
-} = require('./constants');
+const {isDevelopment, copyMetaFiles, resolver, getEnv} = require('./utils');
+const {STYLE_REGEX, SVG_REGEX, SOURCE_REGEX} = require('./constants');
 
 module.exports = (webpack_env) => {
   const {env, variant} = webpack_env;
@@ -48,7 +37,6 @@ module.exports = (webpack_env) => {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process_env)
     }),
-    new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         {
