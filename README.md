@@ -25,7 +25,7 @@ development process to our developers and make them selves familliar with
 
 #### Step 1:
 
-Clone the boilerplate
+Clone this boilerplate
 
 ```bash
 git clone https://github.com/petatemarvin26/react-webpack.git . # through https
