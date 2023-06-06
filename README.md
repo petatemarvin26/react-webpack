@@ -25,13 +25,23 @@ development process to our developers and make them selves familliar with
 
 #### Step 1:
 
-Install dependencies
+Clone this boilerplate
 
 ```bash
-npm install # node package manager yarn install # using yarn packacge manager
+git clone https://github.com/petatemarvin26/react-webpack.git . # through https
+git clone git@github.com:petatemarvin26/react-webpack.git . # through ssh
 ```
 
 #### Step 2:
+
+Install dependencies
+
+```bash
+npm install # if you are using node package manager
+yarn install # if using yarn packacge manager
+```
+
+#### Step 3:
 
 Setup environment variables
 
