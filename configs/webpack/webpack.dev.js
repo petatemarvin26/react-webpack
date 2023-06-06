@@ -38,6 +38,15 @@ module.exports = (process_env) => {
           }
         ],
         exclude: '/node_modules/'
+      },
+      {
+        test: FILE_REGEX,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: assetOutputPath
+        },
+        exclude: '/node_modules/'
       }
     ]
   };
