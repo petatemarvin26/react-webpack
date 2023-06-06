@@ -2,7 +2,7 @@
 
 ### Author
 
-This project was written by **Marvin Petate**
+This boilerplate was written by **Marvin Petate**
 
 ### Description
 

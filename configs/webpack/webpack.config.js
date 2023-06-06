@@ -13,7 +13,6 @@ const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
 const {
   isDevelopment,
-  assetOutputPath,
   copyMetaFiles,
   resolver,
   getEnv
@@ -21,8 +20,8 @@ const {
 const {
   STYLE_REGEX,
   SVG_REGEX,
-  FILE_REGEX,
-  SOURCE_REGEX
+  SOURCE_REGEX,
+  FILE_REGEX
 } = require('./constants');
 
 module.exports = (webpack_env) => {
@@ -42,15 +41,6 @@ module.exports = (webpack_env) => {
       {
         test: SVG_REGEX,
         loader: '@svgr/webpack'
-      },
-      {
-        test: FILE_REGEX,
-        loader: 'file-loader',
-        exclude: '/node_modules/',
-        options: {
-          name: '[name].[ext]',
-          outputPath: assetOutputPath
-        }
       }
     ]
   };

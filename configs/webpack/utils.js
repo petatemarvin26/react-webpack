@@ -1,12 +1,14 @@
 const dotenv = require('dotenv');
 const {
   SVG_REGEX,
-  FILE_REGEX,
+  IMG_REGEX,
   HOST,
   PORT,
   SOURCE_REGEX,
   STYLE_REGEX,
-  ROOT_DIR
+  ROOT_DIR,
+  ICON_REGEX,
+  GIF_REGEX
 } = require('./constants');
 
 const assetFilter = (assetFilename) => {
@@ -18,8 +20,9 @@ const assetFilter = (assetFilename) => {
 };
 
 const isSvg = (file) => SVG_REGEX.test(file);
-
-const isImage = (file) => FILE_REGEX.test(file);
+const isImage = (file) => IMG_REGEX.test(file);
+const isIcon = (file) => ICON_REGEX.test(file);
+const isGif = (file) => GIF_REGEX.test(file);
 
 const isDevelopment = (env) => env === 'dev';
 
@@ -28,7 +31,13 @@ const assetOutputPath = (url, resource) => {
     return `static/media/svg/${url}`;
   }
   if (isImage(resource)) {
-    return `static/media/images/${url}`;
+    return `static/media/image/${url}`;
+  }
+  if (isIcon(resource)) {
+    return `static/media/ico/${url}`;
+  }
+  if (isGif(resource)) {
+    return `static/media/gif/${url}`;
   }
   return `static/media/others/${url}`;
 };

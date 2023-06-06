@@ -2,8 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const {STYLE_REGEX, MAX_SIZE} = require('./constants');
-const {assetFilter, resolver} = require('./utils');
+const {STYLE_REGEX, MAX_SIZE, FILE_REGEX} = require('./constants');
+const {assetFilter, resolver, assetOutputPath} = require('./utils');
 
 module.exports = (process_env) => {
   const {PUBLIC_URL, ENV} = process_env;
@@ -20,6 +20,14 @@ module.exports = (process_env) => {
         test: STYLE_REGEX,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
         exclude: '/node_modules/'
+      },
+      {
+        test: FILE_REGEX,
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: assetOutputPath
+        }
       }
     ]
   };
