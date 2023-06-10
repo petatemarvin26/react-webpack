@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "This is React Application maintain the light weight configuration using Webpack",
   "private": true,
   "scripts": {
@@ -22,6 +22,7 @@
     "not dead"
   ],
   "author": "Marvin Petate",
+  "license": "MIT",
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
