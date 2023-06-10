@@ -63,6 +63,16 @@ module.exports = (webpack_env) => {
   const optimization = {
     mergeDuplicateChunks: true,
     concatenateModules: true,
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    },
     minimize: is_development ? true : false,
     minimizer: [
       new CssMinimizerPlugin({parallel: 2, include: STYLE_REGEX}),
