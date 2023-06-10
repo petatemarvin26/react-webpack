@@ -13,9 +13,7 @@
     "./src/**/*",
     "./global.d.ts",
     "./module.d.ts",
-    "./configs/.eslintrc.js",
-    "test/index.tsx",
-    "test"
+    "./configs/.eslintrc.js"
   ],
   "exclude": ["./node_modules"]
 }
