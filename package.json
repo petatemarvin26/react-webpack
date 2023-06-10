@@ -1,12 +1,17 @@
 {
   "name": "react-webpack",
-  "version": "1.0.7",
+  "version": "1.0.0",
   "description": "This is React Application maintain the light weight configuration using Webpack",
   "private": true,
   "scripts": {
     "start": "webpack serve --config configs/webpack/webpack.config.js",
+    "start": "webpack serve --config configs/webpack/webpack.config.js",
     "eslint": "npx eslint ./src",
     "clean": "rm -rf build",
+    "build": "npm run clean; webpack build --config configs/webpack/webpack.config.js",
+    "build:dev": "npm run clean; webpack build --env variant=dev --config configs/webpack/webpack.config.js",
+    "build:uat": "npm run clean; webpack build --env variant=uat --config configs/webpack/webpack.config.js",
+    "build:prod": "npm run clean; webpack build --env variant=prod --config configs/webpack/webpack.config.js"
     "build": "npm run clean; webpack build --config configs/webpack/webpack.config.js",
     "build:dev": "npm run clean; webpack build --env variant=dev --config configs/webpack/webpack.config.js",
     "build:uat": "npm run clean; webpack build --env variant=uat --config configs/webpack/webpack.config.js",
@@ -22,6 +27,7 @@
     "not dead"
   ],
   "author": "Marvin Petate",
+  "license": "MIT",
   "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
