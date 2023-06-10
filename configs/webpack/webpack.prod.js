@@ -10,7 +10,6 @@ module.exports = (process_env) => {
 
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
-    publicPath: resolver(),
     path: resolver('build'),
     clean: true
   };
@@ -23,7 +22,8 @@ module.exports = (process_env) => {
       },
       {
         test: FILE_REGEX,
-        loader: 'url-loader',
+        loader: 'file-loader',
+        exclude: '/node_modules/',
         options: {
           name: '[name].[ext]',
           outputPath: assetOutputPath
