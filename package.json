@@ -5,13 +5,8 @@
   "private": true,
   "scripts": {
     "start": "webpack serve --config configs/webpack/webpack.config.js",
-    "start": "webpack serve --config configs/webpack/webpack.config.js",
     "eslint": "npx eslint ./src",
     "clean": "rm -rf build",
-    "build": "npm run clean; webpack build --config configs/webpack/webpack.config.js",
-    "build:dev": "npm run clean; webpack build --env variant=dev --config configs/webpack/webpack.config.js",
-    "build:uat": "npm run clean; webpack build --env variant=uat --config configs/webpack/webpack.config.js",
-    "build:prod": "npm run clean; webpack build --env variant=prod --config configs/webpack/webpack.config.js"
     "build": "npm run clean; webpack build --config configs/webpack/webpack.config.js",
     "build:dev": "npm run clean; webpack build --env variant=dev --config configs/webpack/webpack.config.js",
     "build:uat": "npm run clean; webpack build --env variant=uat --config configs/webpack/webpack.config.js",
