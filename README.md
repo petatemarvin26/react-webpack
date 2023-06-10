@@ -4,12 +4,6 @@
 
 This boilerplate was written by **Marvin Petate**
 
-### Description
-
-This project is for template purposes that powered by `Webpack`, `Babel`,`ESlint` and `React` library,
-
-We setup partially what you need, you can delete all unnecessary files, syntax that you are surely has no sense on your setup and you may add some configuration depends on what you need, this scratch project template in React with Webpack can be able to use as your own project start up
-
 ### Goals
 
 This project aims to give understanding to our Web Developers how to setup
@@ -21,7 +15,7 @@ development process to our developers and make them selves familliar with
 
 #
 
-### Setup Development
+### Setup for development
 
 #### Step 1:
 
@@ -43,11 +37,13 @@ yarn install # if using yarn packacge manager
 
 #### Step 3:
 
-Setup environment variables
+Environment variables
 
 ```bash
 touch .env.dev # .env.dev ENV='development' VERSION='1.0.1'
 ```
+
+> NOTE: the extension name `.dev` was based on the env variable `variant`
 
 #
 
@@ -89,14 +85,22 @@ In [webpack/webpack.config.js](configs/webpack/webpack.config.js) change the `co
 },
 ```
 
-> NOTE: You may also uninstall this loader
-
 #### Step 4:
 
 Now you can start the bundler using `npm start` and open the web application
 
+> NOTE: please uninstall unnecessary libraries in node_modules after configuration
+
 #
 
-### Empower Us
+### Contributing
 
-As a new contributor who helps other devs on their queries about scratch works, here is my configuration setup at React using Webpack
+As the owner of this repository I really appreciate the knowledge, suggestions of other contributors who helps to make this boilerplate more cleaner and efficient
+
+We setup partially what you need, you can delete all unnecessary files, syntax that you are surely has no sense on your setup and you may add some configuration depends on what you need, this scratch boilerplate in React with Webpack can be able to use as your own project startup
+
+#
+
+### License
+
+Distributed under the MIT License. See LICENSE for more information.
