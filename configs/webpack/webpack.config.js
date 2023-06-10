@@ -64,15 +64,6 @@ module.exports = (webpack_env) => {
     mergeDuplicateChunks: true,
     concatenateModules: true,
     minimize: is_development ? true : false,
-    // splitChunks: {
-    //   cacheGroups: {
-    //     default: false,
-    //     vendor: {
-    //       name: 'vendors',
-    //       chunks: 'all'
-    //     }
-    //   }
-    // },
     minimizer: [
       new CssMinimizerPlugin({parallel: 2, include: STYLE_REGEX}),
       new TerserPlugin({
