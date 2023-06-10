@@ -9,7 +9,7 @@ module.exports = (process_env) => {
   const {PUBLIC_URL, ENV} = process_env;
 
   const output = {
-    filename: 'static/js/[contenthash:10].bundle.js',
+    filename: 'static/js/[contenthash:10].[name].js',
     path: resolver('build'),
     clean: true
   };
