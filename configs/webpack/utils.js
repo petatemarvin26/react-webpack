@@ -1,3 +1,4 @@
+const fs = require('fs');
 const dotenv = require('dotenv');
 const {
   SVG_REGEX,
@@ -8,8 +9,13 @@ const {
   STYLE_REGEX,
   ROOT_DIR,
   ICON_REGEX,
-  GIF_REGEX
+  GIF_REGEX,
+  PUBLIC_URL
 } = require('./constants');
+
+const resolver = (path = '') => {
+  return ROOT_DIR + `/${path}`;
+};
 
 const assetFilter = (assetFilename) => {
   return (
@@ -23,8 +29,6 @@ const isSvg = (file) => SVG_REGEX.test(file);
 const isImage = (file) => IMG_REGEX.test(file);
 const isIcon = (file) => ICON_REGEX.test(file);
 const isGif = (file) => GIF_REGEX.test(file);
-
-const isDevelopment = (env) => env === 'dev';
 
 const assetOutputPath = (url, resource) => {
   if (isSvg(resource)) {
@@ -41,49 +45,43 @@ const assetOutputPath = (url, resource) => {
   }
   return `static/media/others/${url}`;
 };
+
 const copyMetaFiles = (filepath) => !filepath.endsWith('.html');
 
 const getVersion = () => {
   return process.env.npm_package_version;
 };
 
-const getPublicUrl = (local_env) => {
-  return local_env ? local_env['PUBLIC_URL'] : `http://${HOST}:${PORT}`;
+const getPublicUrl = (variables) => {
+  const public_var = variables['PUBLIC_URL'];
+  return !!public_var ? variables['PUBLIC_URL'] : PUBLIC_URL;
 };
 
-const getNodeEnv = (local_env) => {
-  return local_env ? local_env['ENV'] : 'development';
+const getNodeEnv = (env, variables) => {
+  const env_var = variables['ENV'];
+  return !!env_var ? variables['ENV'] : env ? 'development' : 'production';
 };
 
 const getEnv = (env, variant) => {
-  const config = {path: `${ROOT_DIR}/.env.${variant}`};
+  const filename = variant ? `.env.${variant}` : '.env';
+  const is_exist = fs.existsSync(filename);
+  const VARIABLES = is_exist
+    ? dotenv.config({path: resolver(filename)}).parsed
+    : {};
 
-  if (env === 'dev' && variant === 'dev') config.path = `${ROOT_DIR}/.env`;
-
-  const ENV_CONFIG = dotenv.config(config);
-  let ENV = {parsed: {}};
-
-  if (ENV_CONFIG.error) {
-    ENV.parsed['VERSION'] = getVersion();
-    ENV.parsed['PUBLIC_URL'] = getPublicUrl(ENV_CONFIG.parsed);
-    ENV.parsed['ENV'] = getNodeEnv(ENV_CONFIG.parsed);
-  } else {
-    ENV = ENV_CONFIG;
-  }
-
+  let ENV = {
+    ...VARIABLES,
+    VERSION: getVersion(),
+    PUBLIC_URL: getPublicUrl(env, VARIABLES),
+    ENV: getNodeEnv(env, VARIABLES)
+  };
   return ENV;
-};
-
-const resolver = (path = '') => {
-  return ROOT_DIR + `/${path}`;
 };
 
 module.exports = {
   isSvg,
   isImage,
-  isDevelopment,
   assetOutputPath,
-  assetFilter,
   assetFilter,
   copyMetaFiles,
   getVersion,

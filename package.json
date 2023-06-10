@@ -1,16 +1,16 @@
 {
   "name": "react-webpack",
   "version": "1.0.0",
-  "description": "This is React Application with Webpack configuration.",
+  "description": "This is React Application maintain the light weight configuration using Webpack",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env env=dev variant=dev --config configs/webpack/webpack.config.js",
+    "start": "webpack serve --config configs/webpack/webpack.config.js",
     "eslint": "npx eslint ./src",
     "clean": "rm -rf build",
-    "build": "npm run clean; webpack build --env env=prod variant=dev --config configs/webpack/webpack.config.js",
-    "build:dev": "npm run clean; webpack build --env env=prod variant=dev --config configs/webpack/webpack.config.js",
-    "build:uat": "npm run clean; webpack build --env env=prod variant=uat --config configs/webpack/webpack.config.js",
-    "build:prod": "npm run clean; webpack build --env env=prod variant=prod --config configs/webpack/webpack.config.js"
+    "build": "npm run clean; webpack build --config configs/webpack/webpack.config.js",
+    "build:dev": "npm run clean; webpack build --env variant=dev --config configs/webpack/webpack.config.js",
+    "build:uat": "npm run clean; webpack build --env variant=uat --config configs/webpack/webpack.config.js",
+    "build:prod": "npm run clean; webpack build --env variant=prod --config configs/webpack/webpack.config.js"
   },
   "keywords": [
     "scratch",
@@ -22,7 +22,7 @@
     "not dead"
   ],
   "author": "Marvin Petate",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -56,7 +56,6 @@
     "svg-inline-loader": "^0.8.2",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.4.2",
-    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.9.4",
     "url-loader": "^4.1.1",
     "webpack": "^5.75.0",

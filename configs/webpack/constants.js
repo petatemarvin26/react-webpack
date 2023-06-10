@@ -2,6 +2,7 @@ const path = require('path');
 
 const HOST = 'localhost';
 const PORT = 3000;
+const PUBLIC_URL = `http://${HOST}:${PORT}`;
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
@@ -18,6 +19,7 @@ const MAX_SIZE = 326000;
 module.exports = {
   HOST,
   PORT,
+  PUBLIC_URL,
   ROOT_DIR,
   FILE_REGEX,
   ICON_REGEX,
