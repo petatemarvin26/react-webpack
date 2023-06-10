@@ -10,7 +10,6 @@ module.exports = (process_env) => {
   const output = {
     filename: 'static/js/[contenthash:10].bundle.js',
     path: resolver('build'),
-    publicPath: 'auto',
     clean: true
   };
   const devServer = {
@@ -42,11 +41,11 @@ module.exports = (process_env) => {
       {
         test: FILE_REGEX,
         loader: 'file-loader',
+        exclude: '/node_modules/',
         options: {
           name: '[name].[ext]',
           outputPath: assetOutputPath
-        },
-        exclude: '/node_modules/'
+        }
       }
     ]
   };

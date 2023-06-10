@@ -6,17 +6,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
-const {default: TsconfigPathsPlugin} = require('tsconfig-paths-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
-const {isDevelopment, copyMetaFiles, resolver, getEnv} = require('./utils');
+const {copyMetaFiles, resolver, getEnv} = require('./utils');
 const {STYLE_REGEX, SVG_REGEX, SOURCE_REGEX} = require('./constants');
 
 module.exports = (webpack_env) => {
-  const {env, variant} = webpack_env;
+  const {WEBPACK_SERVE, variant} = webpack_env;
 
-  const process_env = getEnv(env, variant).parsed;
+  const is_development = !!WEBPACK_SERVE;
+  const process_env = getEnv(is_development, variant);
 
   const entry = resolver('src/index.tsx');
 
@@ -58,16 +58,21 @@ module.exports = (webpack_env) => {
   ];
   const resolve = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    plugins: [new TsconfigPathsPlugin()],
     preferRelative: true
   };
   const optimization = {
     mergeDuplicateChunks: true,
     concatenateModules: true,
-    splitChunks: {
-      chunks: 'all'
-    },
-    minimize: true,
+    minimize: is_development ? true : false,
+    // splitChunks: {
+    //   cacheGroups: {
+    //     default: false,
+    //     vendor: {
+    //       name: 'vendors',
+    //       chunks: 'all'
+    //     }
+    //   }
+    // },
     minimizer: [
       new CssMinimizerPlugin({parallel: 2, include: STYLE_REGEX}),
       new TerserPlugin({
@@ -90,7 +95,7 @@ module.exports = (webpack_env) => {
     optimization
   };
 
-  if (isDevelopment(env)) {
+  if (is_development) {
     return merge(config, devConfig(process_env));
   }
   return merge(config, prodConfig(process_env));
