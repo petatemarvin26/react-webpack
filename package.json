@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "This is React Application maintain the light weight configuration using Webpack",
   "private": true,
   "scripts": {
