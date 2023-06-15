@@ -14,7 +14,7 @@ const FILE_REGEX = [ICON_REGEX, IMG_REGEX, GIF_REGEX, SVG_REGEX];
 const STYLE_REGEX = /\.(css|scss)$/i;
 const SOURCE_REGEX = /\.(ts|tsx)$/i;
 
-const MAX_SIZE = 326000;
+const MAX_SIZE = 360000;
 
 module.exports = {
   HOST,
