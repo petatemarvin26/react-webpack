@@ -8,11 +8,6 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "include": [
-    "./src/**/*",
-    "./global.d.ts",
-    "./module.d.ts",
-    "./configs/.eslintrc.js"
-  ],
+  "include": ["./src/**/*", "./module.d.ts", "./configs/.eslintrc.js"],
   "exclude": ["./node_modules"]
 }
