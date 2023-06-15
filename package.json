@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "This is React Application maintain the light weight configuration using Webpack",
   "private": true,
   "scripts": {
@@ -56,6 +56,7 @@
     "svg-inline-loader": "^0.8.2",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.4.2",
+    "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^4.9.4",
     "webpack": "^5.86.0",
     "webpack-bundle-analyzer": "^4.9.0",
