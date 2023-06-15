@@ -72,7 +72,7 @@ const getEnv = (env, variant) => {
   let ENV = {
     ...VARIABLES,
     VERSION: getVersion(),
-    PUBLIC_URL: getPublicUrl(env, VARIABLES),
+    PUBLIC_URL: getPublicUrl(VARIABLES),
     ENV: getNodeEnv(env, VARIABLES)
   };
   return ENV;
