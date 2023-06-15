@@ -20,10 +20,9 @@ button {
 body #root {
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 :root {
-  --BG: #0e0e0e;
+  --BG: #181818;
   --WHITE: #fff;
 }
