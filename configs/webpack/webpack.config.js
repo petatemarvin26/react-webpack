@@ -59,8 +59,7 @@ module.exports = (webpack_env) => {
   ];
   const resolve = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
-    plugins: [new TsconfigPathsPlugin()],
-    preferRelative: true
+    plugins: [new TsconfigPathsPlugin()]
   };
   const optimization = {
     mergeDuplicateChunks: true,
