@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const {merge} = require('webpack-merge');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
@@ -21,19 +20,6 @@ module.exports = (webpack_env) => {
 
   const entry = resolver('src/index.tsx');
 
-  const module = {
-    rules: [
-      {
-        test: SOURCE_REGEX,
-        loader: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: SVG_REGEX,
-        loader: '@svgr/webpack'
-      }
-    ]
-  };
   const plugins = [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process_env)
@@ -47,9 +33,6 @@ module.exports = (webpack_env) => {
         }
       ]
     }),
-    new MiniCssExtractPlugin({
-      filename: `static/css/[contenthash:10].styles.css`
-    }),
     new ESLintWebpackPlugin({
       resolvePluginsRelativeTo: resolver('src'),
       context: resolver('src'),
@@ -57,6 +40,19 @@ module.exports = (webpack_env) => {
       extensions: ['ts', 'tsx', 'js', 'jsx']
     })
   ];
+  const module = {
+    rules: [
+      {
+        test: SOURCE_REGEX,
+        loader: 'ts-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: SVG_REGEX,
+        loader: '@svgr/webpack'
+      }
+    ]
+  };
   const resolve = {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     plugins: [new TsconfigPathsPlugin()]
