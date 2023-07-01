@@ -46,10 +46,6 @@ module.exports = (webpack_env) => {
         test: SOURCE_REGEX,
         loader: 'ts-loader',
         exclude: /node_modules/
-      },
-      {
-        test: SVG_REGEX,
-        use: ['@svgr/webpack', 'file-loader']
       }
     ]
   };
