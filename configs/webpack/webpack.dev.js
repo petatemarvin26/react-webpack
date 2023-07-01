@@ -3,7 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const {STYLE_REGEX, PORT, FILE_REGEX} = require('./constants');
+const {
+  STYLE_REGEX,
+  PORT,
+  GIF_REGEX,
+  IMG_REGEX,
+  ICON_REGEX
+} = require('./constants');
 const {resolver} = require('./utils');
 
 module.exports = (process_env) => {
@@ -29,7 +35,7 @@ module.exports = (process_env) => {
         exclude: '/node_modules/'
       },
       {
-        test: FILE_REGEX,
+        test: [ICON_REGEX, IMG_REGEX, GIF_REGEX],
         type: 'asset/resource'
       }
     ]
