@@ -1,9 +1,10 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const InterpolateHtmlPlugin = require('interpolate-html-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const {STYLE_REGEX, PORT, FILE_REGEX} = require('./constants');
-const {resolver, assetOutputPath} = require('./utils');
+const {resolver} = require('./utils');
 
 module.exports = (process_env) => {
   const {ENV} = process_env;
@@ -24,28 +25,12 @@ module.exports = (process_env) => {
     rules: [
       {
         test: STYLE_REGEX,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]-[hash:10]'
-              }
-            }
-          }
-        ],
+        use: ['style-loader', 'css-loader'],
         exclude: '/node_modules/'
       },
       {
         test: FILE_REGEX,
-        loader: 'file-loader',
-        exclude: '/node_modules/',
-        options: {
-          name: '[name].[ext]',
-          outputPath: assetOutputPath
-        }
+        type: 'asset/resource'
       }
     ]
   };
