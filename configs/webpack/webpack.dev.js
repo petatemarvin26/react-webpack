@@ -6,6 +6,7 @@ const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const {
   STYLE_REGEX,
   PORT,
+  SVG_REGEX,
   GIF_REGEX,
   IMG_REGEX,
   ICON_REGEX
@@ -15,7 +16,7 @@ const {resolver} = require('./utils');
 module.exports = (process_env) => {
   const {ENV} = process_env;
   const output = {
-    filename: 'static/js/[contenthash:10].bundle.js',
+    filename: 'static/js/[name].[contenthash:5].bundle.js',
     path: resolver('build'),
     clean: true
   };
@@ -31,8 +32,23 @@ module.exports = (process_env) => {
     rules: [
       {
         test: STYLE_REGEX,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]-[hash:10]'
+              }
+            }
+          }
+        ],
         exclude: '/node_modules/'
+      },
+      {
+        test: SVG_REGEX,
+        use: ['@svgr/webpack', 'file-loader']
       },
       {
         test: [ICON_REGEX, IMG_REGEX, GIF_REGEX],
