@@ -20,7 +20,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     quotes: [2, 'single', {avoidEscape: true}],
-    semi: ['error', 'always'],
+    semi: 'off',
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
     '@typescript-eslint/no-empty-function': 'off',

@@ -9,21 +9,38 @@ module.exports = (process_env) => {
   const {PUBLIC_URL, ENV} = process_env;
 
   const output = {
-    filename: 'static/js/[contenthash:10].[name].js',
+    filename: 'static/js/[contenthash:10].js',
     path: resolver('build'),
     clean: true
   };
+  const plugins = [
+    new InterpolateHtmlPlugin({PUBLIC_URL, ENV}),
+    new HtmlWebpackPlugin({
+      template: resolver('public/index.html'),
+      publicPath: PUBLIC_URL
+    }),
+    new MiniCssExtractPlugin({
+      filename: `static/css/[contenthash:10].styles.css`
+    })
+  ];
   const module = {
     rules: [
       {
         test: STYLE_REGEX,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: false // auto generate file depends on url()
+            }
+          }
+        ],
         exclude: '/node_modules/'
       },
       {
         test: FILE_REGEX,
         loader: 'file-loader',
-        exclude: '/node_modules/',
         options: {
           name: '[name].[ext]',
           outputPath: assetOutputPath
@@ -31,13 +48,6 @@ module.exports = (process_env) => {
       }
     ]
   };
-  const plugins = [
-    new InterpolateHtmlPlugin({PUBLIC_URL, ENV}),
-    new HtmlWebpackPlugin({
-      template: resolver('public/index.html'),
-      publicPath: PUBLIC_URL
-    })
-  ];
   const performance = {
     maxEntrypointSize: MAX_SIZE,
     maxAssetSize: MAX_SIZE,
