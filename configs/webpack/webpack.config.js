@@ -49,7 +49,7 @@ module.exports = (webpack_env) => {
       },
       {
         test: SVG_REGEX,
-        loader: '@svgr/webpack'
+        use: ['@svgr/webpack', 'file-loader']
       }
     ]
   };
