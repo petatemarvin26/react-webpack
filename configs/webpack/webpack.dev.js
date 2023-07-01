@@ -24,28 +24,12 @@ module.exports = (process_env) => {
     rules: [
       {
         test: STYLE_REGEX,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]-[hash:10]'
-              }
-            }
-          }
-        ],
+        use: ['style-loader', 'css-loader'],
         exclude: '/node_modules/'
       },
       {
         test: FILE_REGEX,
-        loader: 'file-loader',
-        exclude: '/node_modules/',
-        options: {
-          name: '[name].[ext]',
-          outputPath: assetOutputPath
-        }
+        type: 'asset/resource'
       }
     ]
   };
@@ -55,7 +39,6 @@ module.exports = (process_env) => {
       template: resolver('public/index.html')
     }),
     new InterpolateHtmlPlugin({PUBLIC_URL: '', ENV})
-    // new BundleAnalyzerPlugin()
   ];
 
   return {
