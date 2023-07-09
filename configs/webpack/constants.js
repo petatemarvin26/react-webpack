@@ -1,8 +1,8 @@
 const path = require('path');
 
-const HOST = 'localhost';
-const PORT = 3000;
-const PUBLIC_URL = `http://${HOST}:${PORT}`;
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3000;
+const PUBLIC_URL = process.env.PUBLIC_URL || `http://${HOST}:${PORT}`;
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
