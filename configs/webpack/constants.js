@@ -7,7 +7,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL || `http://${HOST}:${PORT}`;
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
 const ICON_REGEX = /\.(ico)$/i;
-const IMG_REGEX = /\.(png|jpg|jpeg)$/i;
+const IMG_REGEX = /\.(png|jpg|jpeg|webp)$/i;
 const GIF_REGEX = /\.(gif)$/i;
 const SVG_REGEX = /\.(svg)$/i;
 const FILE_REGEX = [ICON_REGEX, IMG_REGEX, GIF_REGEX, SVG_REGEX];
