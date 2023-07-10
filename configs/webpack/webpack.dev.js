@@ -52,7 +52,10 @@ module.exports = (process_env) => {
       },
       {
         test: [ICON_REGEX, IMG_REGEX, GIF_REGEX],
-        type: 'asset/resource'
+        type: 'asset/resource',
+        generator: {
+          filename: '[name]-[hash:10].[ext]'
+        }
       }
     ]
   };
