@@ -9,9 +9,13 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
+const {STYLE_REGEX, SOURCE_REGEX} = require('./constants');
 const {copyMetaFiles, resolver, getEnv} = require('./utils');
-const {STYLE_REGEX, SVG_REGEX, SOURCE_REGEX} = require('./constants');
 
+/**
+ * @param {*} env
+ * @returns {import('webpack').Configuration}
+ */
 module.exports = (webpack_env) => {
   const {WEBPACK_SERVE, variant} = webpack_env;
 
@@ -83,8 +87,8 @@ module.exports = (webpack_env) => {
   let config = {
     target: 'web',
     entry,
-    module,
     plugins,
+    module,
     resolve,
     optimization
   };

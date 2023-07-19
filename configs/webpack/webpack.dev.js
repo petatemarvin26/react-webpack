@@ -13,6 +13,10 @@ const {
 } = require('./constants');
 const {resolver} = require('./utils');
 
+/**
+ * @param {*} env
+ * @returns {import('webpack').Configuration}
+ */
 module.exports = (process_env) => {
   const {ENV} = process_env;
   const output = {
