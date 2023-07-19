@@ -9,8 +9,8 @@ const {assetFilter, resolver, assetOutputPath} = require('./utils');
  * @param {*} env
  * @returns {import('webpack').Configuration}
  */
-module.exports = (process_env) => {
-  const {PUBLIC_URL, ENV} = process_env;
+module.exports = (env) => {
+  const {PUBLIC_URL, ENV} = env;
 
   const output = {
     filename: 'static/js/[contenthash:10].js',

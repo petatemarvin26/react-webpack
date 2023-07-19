@@ -3,8 +3,8 @@ const {merge} = require('webpack-merge');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
@@ -70,7 +70,7 @@ module.exports = (webpack_env) => {
         }
       }
     },
-    minimize: is_development ? true : false,
+    minimize: !is_development,
     minimizer: [
       new CssMinimizerPlugin({parallel: 2, include: STYLE_REGEX}),
       new TerserPlugin({

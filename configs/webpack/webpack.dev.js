@@ -17,8 +17,8 @@ const {resolver} = require('./utils');
  * @param {*} env
  * @returns {import('webpack').Configuration}
  */
-module.exports = (process_env) => {
-  const {ENV} = process_env;
+module.exports = (env) => {
+  const {ENV} = env;
   const output = {
     filename: 'static/js/[name].[contenthash:5].bundle.js',
     path: resolver('build'),
