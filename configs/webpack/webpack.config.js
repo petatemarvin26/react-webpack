@@ -40,7 +40,7 @@ module.exports = (webpack_env) => {
     new ESLintWebpackPlugin({
       resolvePluginsRelativeTo: resolver('src'),
       context: resolver('src'),
-      overrideConfigFile: resolver('configs/.eslintrc.js'),
+      overrideConfigFile: resolver('configs/.eslintrc'),
       extensions: ['ts', 'tsx', 'js', 'jsx']
     })
   ];
