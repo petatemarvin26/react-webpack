@@ -5,8 +5,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {STYLE_REGEX, MAX_SIZE, FILE_REGEX, SVG_REGEX} = require('./constants');
 const {assetFilter, resolver, assetOutputPath} = require('./utils');
 
-module.exports = (process_env) => {
-  const {PUBLIC_URL, ENV} = process_env;
+/**
+ * @param {*} env
+ * @returns {import('webpack').Configuration}
+ */
+module.exports = (env) => {
+  const {PUBLIC_URL, ENV} = env;
 
   const output = {
     filename: 'static/js/[contenthash:10].js',

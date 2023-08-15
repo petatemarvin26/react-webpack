@@ -3,8 +3,6 @@ const dotenv = require('dotenv');
 const {
   SVG_REGEX,
   IMG_REGEX,
-  HOST,
-  PORT,
   SOURCE_REGEX,
   STYLE_REGEX,
   ROOT_DIR,
