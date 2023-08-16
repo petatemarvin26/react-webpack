@@ -3,7 +3,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || 'localhost';
 const VERSION = process.env.npm_package_version;
-const PUBLIC_URL = process.env.PUBLIC_URL || `http://${HOST}:${PORT}`;
+const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
