@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>React Webpack</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React Scratch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Mavin Petate" />
     <meta
       name="description"
-      content="This is React Application with Webpack configuration."
+      content="This boilerplate intended for react boilerplate from scratch using webpack"
     />
     <link
       rel="icon"
-      href="https://raw.githubusercontent.com/webpack/media/master/logo/icon.png"
+      href="<%= htmlWebpackPlugin.options.PUBLIC_URL %>/logo.png"
     />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" href="%PUBLIC_URL%/index.css" />
+    <link
+      rel="stylesheet"
+      href="<%= htmlWebpackPlugin.options.PUBLIC_URL %>/index.css"
+    />
   </head>
   <body>
     <div id="root"></div>

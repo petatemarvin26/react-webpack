@@ -1,0 +1,10 @@
+.main {
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .icon {
+  width: 100px;
+  height: 100px;
+}
