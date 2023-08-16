@@ -67,7 +67,6 @@ Implement module resolver on our [config/.babelrc][babelrc] to resolving the rel
 
 ```json
 {
-  ...
   "plugins": [
     ["module-resolver", {"root": ["./src"]}]
   ]
