@@ -56,8 +56,12 @@ const getPublicUrl = (env) => {
   return public_url ? public_url : `http://${host}:${port}`;
 };
 
+const getNodeEnv = (is_dev) => {
+  return is_dev ? 'development' : 'production';
+};
+
 const getEnv = (wp_env) => {
-  const {variant} = wp_env;
+  const {variant, WEBPACK_SERVE} = wp_env;
   const env_file = variant ? `.env.${variant}` : '.env';
 
   const env = config({path: resolver(env_file)});
@@ -67,7 +71,8 @@ const getEnv = (wp_env) => {
     vars = {
       ...vars,
       ...env.parsed,
-      PUBLIC_URL: getPublicUrl(env.parsed)
+      PUBLIC_URL: getPublicUrl(env.parsed),
+      NODE_ENV: getNodeEnv(WEBPACK_SERVE)
     };
   }
   return vars;
