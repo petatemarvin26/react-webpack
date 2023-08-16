@@ -51,43 +51,46 @@ touch .env.dev # .env.dev ENV='development' VERSION='1.0.1'
 
 #### Step 1:
 
-In [webpack/constants.js](configs/webpack/constants.js) change the `SOURCE_REGEX`
-
-```javascript
-// before
-const SOURCE_REGEX = /\.(ts|tsx)$/i;
-// after
-const SOURCE_REGEX = /\.(js|jsx)$/i;
-```
+Rename the javascript configuration file from `tsconfig.json` to `jsconfig.json`
 
 #### Step 2:
 
-In [webpack/webpack.config.js](configs/webpack/webpack.config.js) replace the entry point from tsx into jsx or js depends on what you put on your index at [src](src) directory
+Install the `babel-plugin-module-resolver`
 
-```javascript
-// before
-const entry = resolver('src/index.tsx');
-// after
-const entry = resolver('src/index.jsx');
+```bash
+npm i -D babel-plugin-module-resolver
 ```
 
 #### Step 3:
 
-In [webpack/webpack.config.js](configs/webpack/webpack.config.js) change the `config.module.rules` change `ts-loader` to `babel-loader` and add the option of `configFile`
+Implement module resolver on our [config/.babelrc][babelrc] to resolving the relative path from `jsconfig.json`
 
-```javascript
+```json
 {
-  test: SOURCE_REGEX,
-  loader: 'babel-loader',
-  options: {
-    configFile: resolver('configs/.babelrc'),
-  },
-},
+  ...
+  "plugins": [
+    ["module-resolver", {"root": ["./src"]}]
+  ]
+}
 ```
 
 #### Step 4:
 
-Now you can start the bundler using `npm start` and open the web application
+Change the entry file from `index.tsx` to `index.jsx` at [webpack.config.js][webpack-config]
+
+```Javascript
+const entry = {
+  index: './index.jsx'
+};
+```
+
+#### Step 5:
+
+Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin` and remove all related implementation to this library
+
+#### Step 6:
+
+Now you can start the bundler using `npm start`
 
 > NOTE: please uninstall unnecessary libraries in node_modules after configuration
 
@@ -104,3 +107,6 @@ We setup partially what you need, you can delete all unnecessary files, syntax t
 ### License
 
 Distributed under the MIT License. See LICENSE for more information.
+
+[webpack-config]: /config/webpack/webpack.config.js
+[babelrc]: /config/.babelrc

@@ -1,18 +1,22 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
+    "outDir": "./build",
     "target": "ES5",
     "module": "ESNext",
-    "sourceMap": true,
-    "jsx": "react-jsx",
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "moduleResolution": "node"
+    "strict": true,
+    "jsx": "react-jsx",
+    "moduleResolution": "Node"
   },
   "include": [
+    "*.tsx",
+    "*.jsx",
     "./src/**/*",
     "./module.d.ts",
     "./configs/.eslintrc",
     "./configs/.babelrc"
   ],
-  "exclude": ["./node_modules"]
+  "exclude": ["node_modules"]
 }
