@@ -93,7 +93,7 @@ module.exports = (env) => {
     module: modules,
     stats: 'minimal',
     infrastructureLogging: {
-      level: 'info'
+      level: 'error'
     }
   };
 };

@@ -1,5 +1,8 @@
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 const {resolver, copyFilter, assetOutputPath} = require('./utils');
@@ -38,7 +41,8 @@ module.exports = (env) => {
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:10].css'
-    })
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ];
 
   /**
@@ -101,7 +105,23 @@ module.exports = (env) => {
    * @type {import('webpack').Configuration['optimization']}
    */
   const optimization = {
-    mangleExports: 'deterministic'
+    // sideEffects: true,
+    minimize: true,
+    concatenateModules: true,
+    mergeDuplicateChunks: true,
+    mangleExports: 'deterministic',
+    minimizer: [
+      new CssMinimizerPlugin({test: STYLE_FILE}),
+      new TerserPlugin({
+        test: SRC_FILE,
+        minify: TerserPlugin.terserMinify,
+        terserOptions: {
+          mangle: true,
+          compress: {passes: 2},
+          output: {beautify: false}
+        }
+      })
+    ]
   };
 
   return {

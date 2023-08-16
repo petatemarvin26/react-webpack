@@ -49,6 +49,13 @@ const copyFilter = (resourcePath) => {
   return true;
 };
 
+const getPublicUrl = (env) => {
+  const host = env.HOST || HOST;
+  const port = env.PORT || PORT;
+  const public_url = env.PUBLIC_URL;
+  return public_url ? public_url : `http://${host}:${port}`;
+};
+
 const getEnv = (wp_env) => {
   const {variant} = wp_env;
   const env_file = variant ? `.env.${variant}` : '.env';
@@ -57,7 +64,11 @@ const getEnv = (wp_env) => {
 
   let vars = {PUBLIC_URL, VERSION, PORT, HOST};
   if (!env.error) {
-    vars = {...vars, ...env.parsed};
+    vars = {
+      ...vars,
+      ...env.parsed,
+      PUBLIC_URL: getPublicUrl(env.parsed)
+    };
   }
   return vars;
 };
