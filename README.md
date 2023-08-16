@@ -40,10 +40,10 @@ yarn install # if using yarn packacge manager
 Environment variables
 
 ```bash
-touch .env.dev # .env.dev ENV='development' VERSION='1.0.1'
+touch .env # .env PORT=4321 HOST=1.2.3.4
 ```
 
-> NOTE: the extension name `.dev` was based on the env variable `variant`
+> NOTE: arbitrary build with env is base on the env `variant` at npm script `.env.dev`
 
 #
 
@@ -67,9 +67,7 @@ Implement module resolver on our [config/.babelrc][babelrc] to resolving the rel
 
 ```json
 {
-  "plugins": [
-    ["module-resolver", {"root": ["./src"]}]
-  ]
+  "plugins": [["module-resolver", {"root": ["./src"]}]]
 }
 ```
 
