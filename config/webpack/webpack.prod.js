@@ -22,30 +22,6 @@ module.exports = (env) => {
   };
 
   /**
-   * @type {import('webpack').Configuration['plugins']}
-   */
-  const plugins = [
-    new HtmlWebpackPlugin({
-      PUBLIC_URL: env.PUBLIC_URL,
-      publicPath: env.PUBLIC_URL,
-      template: resolver('public/index.html')
-    }),
-    new CopyPlugin({
-      patterns: [
-        {
-          from: resolver('public'),
-          to: resolver('build'),
-          filter: copyFilter
-        }
-      ]
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'static/css/[name].[contenthash:10].css'
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin()
-  ];
-
-  /**
    * @type {import('webpack').Configuration['module']}
    */
   const modules = {
@@ -53,11 +29,9 @@ module.exports = (env) => {
       {
         test: SRC_FILE,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            configFile: resolver('config/.babelrc')
-          }
+        use: 'babel-loader',
+        options: {
+          configFile: resolver('config/.babelrc')
         }
       },
       {
@@ -102,6 +76,30 @@ module.exports = (env) => {
   };
 
   /**
+   * @type {import('webpack').Configuration['plugins']}
+   */
+  const plugins = [
+    new HtmlWebpackPlugin({
+      PUBLIC_URL: env.PUBLIC_URL,
+      publicPath: env.PUBLIC_URL,
+      template: resolver('public/index.html')
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: resolver('public'),
+          to: resolver('build'),
+          filter: copyFilter
+        }
+      ]
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[name].[contenthash:10].css'
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ];
+
+  /**
    * @type {import('webpack').Configuration['optimization']}
    */
   const optimization = {
@@ -127,8 +125,8 @@ module.exports = (env) => {
   return {
     devtool: 'source-map',
     output,
-    plugins,
     module: modules,
+    plugins,
     optimization
   };
 };

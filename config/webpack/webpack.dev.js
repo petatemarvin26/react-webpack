@@ -26,22 +26,6 @@ module.exports = (env) => {
   };
 
   /**
-   * @type {import('webpack').Configuration['plugins']}
-   */
-  const plugins = [
-    new HtmlWebpackPlugin({
-      PUBLIC_URL: '.',
-      template: resolver('public/index.html')
-    }),
-    new ReactRefreshWebpackPlugin(),
-    new ESLintPlugin({
-      context: resolver('src'),
-      overrideConfigFile: resolver('config/.eslintrc'),
-      extensions: ['.ts', '.tsx', '.js', '.jsx']
-    })
-  ];
-
-  /**
    * @type {import('webpack').Configuration['module']}
    */
   const modules = {
@@ -49,12 +33,10 @@ module.exports = (env) => {
       {
         test: SRC_FILE,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            configFile: resolver('config/.babelrc'),
-            plugins: [require.resolve('react-refresh/babel')]
-          }
+        loader: 'babel-loader',
+        options: {
+          configFile: resolver('config/.babelrc'),
+          plugins: [require.resolve('react-refresh/babel')]
         }
       },
       {
@@ -86,11 +68,27 @@ module.exports = (env) => {
     ]
   };
 
+  /**
+   * @type {import('webpack').Configuration['plugins']}
+   */
+  const plugins = [
+    new HtmlWebpackPlugin({
+      PUBLIC_URL: '.',
+      template: resolver('public/index.html')
+    }),
+    new ReactRefreshWebpackPlugin(),
+    new ESLintPlugin({
+      context: resolver('src'),
+      overrideConfigFile: resolver('config/.eslintrc'),
+      extensions: ['.ts', '.tsx', '.js', '.jsx']
+    })
+  ];
+
   return {
     devtool: 'eval-source-map',
     devServer,
-    plugins,
     module: modules,
+    plugins,
     stats: 'minimal',
     infrastructureLogging: {
       level: 'error'

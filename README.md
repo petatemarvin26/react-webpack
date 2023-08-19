@@ -83,7 +83,7 @@ const entry = {
 
 #### Step 5:
 
-Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin` and remove all related implementation to this library
+Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin` and remove all related implementation to this library, dont forget `typescript` as well
 
 #### Step 6:
 

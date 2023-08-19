@@ -66,7 +66,7 @@ const getEnv = (wp_env) => {
 
   const env = config({path: resolver(env_file)});
 
-  let vars = {PUBLIC_URL, VERSION, PORT, HOST};
+  let vars = {PUBLIC_URL: getPublicUrl(wp_env), VERSION, PORT, HOST};
   if (!env.error) {
     vars = {
       ...vars,
