@@ -29,19 +29,17 @@ module.exports = (env) => {
       {
         test: SRC_FILE,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        loader: 'babel-loader',
         options: {
           configFile: resolver('config/.babelrc')
         }
       },
       {
         test: IMG_FILE,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: assetOutputPath
-          }
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: assetOutputPath
         }
       },
       {
