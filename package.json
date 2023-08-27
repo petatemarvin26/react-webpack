@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "This boilerplate intended for react boilerplate from scratch using webpack",
   "author": "Marvin Petate",
   "license": "MIT",
@@ -40,6 +40,7 @@
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "dotenv": "^16.3.1",
+    "eslint": "^8.47.0",
     "eslint-webpack-plugin": "^4.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",

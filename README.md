@@ -10,7 +10,7 @@ This project aims to give understanding to our Web Developers how to setup
 React Application from scratch with organized development configuration and
 also for the production
 
-This configuration was based on [Webpack Documentation](https://webpack.js.org/guide) followed the standard and best practices that requires by Webpack, to have smooth
+This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth
 development process to our developers and make them selves familliar with
 
 #
@@ -63,7 +63,7 @@ npm i -D babel-plugin-module-resolver
 
 #### Step 3:
 
-Implement module resolver on our [config/.babelrc][babelrc] to resolving the relative path from `jsconfig.json`
+Implement module resolver on our [config/.babelrc] to resolving the relative path from `jsconfig.json`
 
 ```json
 {
@@ -73,7 +73,7 @@ Implement module resolver on our [config/.babelrc][babelrc] to resolving the rel
 
 #### Step 4:
 
-Change the entry file from `index.tsx` to `index.jsx` at [webpack.config.js][webpack-config]
+Change the entry file from `index.tsx` to `index.jsx` at [webpack.config.js]
 
 ```Javascript
 const entry = {
@@ -105,5 +105,6 @@ We setup partially what you need, you can delete all unnecessary files, syntax t
 
 Distributed under the MIT License. See LICENSE for more information.
 
-[webpack-config]: /config/webpack/webpack.config.js
-[babelrc]: /config/.babelrc
+[Webpack Documentation]: https://webpack.js.org/guide
+[webpack.config.js]: /config/webpack/webpack.config.js
+[config/.babelrc]: /config/.babelrc
