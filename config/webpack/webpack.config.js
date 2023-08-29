@@ -62,6 +62,7 @@ module.exports = (webpack_env) => {
    */
   const config = {
     mode: 'development',
+    target: 'web',
     entry,
     plugins,
     resolve,
