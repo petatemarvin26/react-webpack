@@ -1,4 +1,4 @@
-# React with Webpack Setup
+# React with Webpack Setup (OUTDATED)
 
 ### Author
 
@@ -83,7 +83,7 @@ const entry = {
 
 #### Step 5:
 
-Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin` and remove all related implementation to this library, dont forget `typescript` as well
+Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin`, `fork-ts-clear-webpack-plugin`,`typescript` and remove all related in typescript configuration
 
 #### Step 6:
 
