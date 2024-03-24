@@ -1,6 +1,7 @@
 const {merge} = require('webpack-merge');
 const {DefinePlugin} = require('webpack');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
@@ -29,7 +30,8 @@ module.exports = (webpack_env) => {
     new ESLintPlugin({
       overrideConfigFile: resolver('config/.eslintrc'),
       extensions: ['.ts', '.tsx', '.js', '.jsx']
-    })
+    }),
+    new ForkTsCheckerWebpackPlugin()
   ];
 
   /**
@@ -52,6 +54,11 @@ module.exports = (webpack_env) => {
           filename: 'static/js/vendor.[contenthash:10].js',
           reuseExistingChunk: true,
           maxSize: 500000
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
         }
       }
     }
