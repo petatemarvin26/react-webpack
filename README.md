@@ -87,8 +87,8 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 
 ...
 const entry = {
--  index: resolver('index.tsx')
-+  index: resolver('index.jsx')
+-  index: resolver('src/index.tsx')
++  index: resolver('src/index.jsx')
 };
 
 ...
