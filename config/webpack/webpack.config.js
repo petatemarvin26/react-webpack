@@ -20,7 +20,7 @@ module.exports = (webpack_env) => {
    * @type {import('webpack').Configuration['entry']}
    */
   const entry = {
-    index: resolver('index.tsx')
+    index: resolver('src/index.tsx')
   };
   /**
    * @type {import('webpack').Configuration['plugins']}
