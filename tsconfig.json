@@ -14,9 +14,7 @@
     "*.tsx",
     "*.jsx",
     "./src/**/*",
-    "./module.d.ts",
-    "./configs/.eslintrc",
-    "./configs/.babelrc"
+    "./module.d.ts"
   ],
   "exclude": ["node_modules", "build"]
 }
