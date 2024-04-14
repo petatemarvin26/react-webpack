@@ -1,4 +1,4 @@
-# React with Webpack Setup (OUTDATED)
+# React with Webpack Setup
 
 ### Author
 
@@ -63,29 +63,52 @@ npm i -D babel-plugin-module-resolver
 
 #### Step 3:
 
-Implement module resolver on our [config/.babelrc] to resolving the relative path from `jsconfig.json`
+Implement module resolver on our [config/.babelrc] to resolving the relative path from `jsconfig.json` and remove preset `@babel/preset-typescript`
 
-```json
+```Diff
 {
-  "plugins": [["module-resolver", {"root": ["./src"]}]]
+   "presets": [
+      ...
+      ["@babel/preset-react", {"runtime": "automatic"}]
+-     ["@babel/preset-typescript"]      
+   ],
++ "plugins": [["module-resolver", {"root": ["./src"]}]]
 }
 ```
 
 #### Step 4:
 
-Change the entry file from `index.tsx` to `index.jsx` at [webpack.config.js]
+Modify webpack configuration at [webpack.config.js]
 
-```Javascript
+```Diff
+...
+const {DefinePlugin} = require('webpack');
+const ESLintPlugin = require('eslint-webpack-plugin');
+- const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+- const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+
+
 const entry = {
-  index: './index.jsx'
+-  index: resolver('index.tsx')
++  index: resolver('index.jsx')
+};
+
+...
+const plugins = [
+  ...
+-  new ForkTsCheckerWebpackPlugin()
+];
+
+...å
+const resolve = { 
+-  plugins: [new TsconfigPathsPlugin()],
+   extensions: ['.js', '.jsx', '.ts', '.tsx']
 };
 ```
+> Dont forget to rename your source files `*.tsx` to `*.jsx` 
 
 #### Step 5:
-
-Lets clean up!, uninstall the `tsconfig-paths-webpack-plugin`, `fork-ts-clear-webpack-plugin`,`typescript` and remove all related in typescript configuration
-
-#### Step 6:
 
 Now you can start the bundler using `npm start`
 
@@ -96,9 +119,6 @@ Now you can start the bundler using `npm start`
 ### Contributing
 
 As the owner of this repository I really appreciate the knowledge, suggestions of other contributors who helps to make this boilerplate more cleaner and efficient
-
-We setup partially what you need, you can delete all unnecessary files, syntax that you are surely has no sense on your setup and you may add some configuration depends on what you need, this scratch boilerplate in React with Webpack can be able to use as your own project startup
-
 #
 
 ### License
