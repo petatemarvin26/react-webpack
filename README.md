@@ -7,11 +7,9 @@ This boilerplate was written by **Marvin Petate**
 ### Goals
 
 This project aims to give understanding to our Web Developers how to setup
-React Application from scratch with organized development configuration and
-also for the production
+React Application from scratch with organized development configuration.
 
-This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth
-development process to our developers and make them selves familliar with
+This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth development process to our developers and make them selves familliar with in bundler.
 
 #
 
@@ -70,7 +68,7 @@ Implement module resolver on our [config/.babelrc] to resolving the relative pat
    "presets": [
       ...
       ["@babel/preset-react", {"runtime": "automatic"}]
--     ["@babel/preset-typescript"]      
+-     ["@babel/preset-typescript"]
    ],
 + "plugins": [["module-resolver", {"root": ["./src"]}]]
 }
@@ -87,8 +85,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 - const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 - const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
-
-
+...
 const entry = {
 -  index: resolver('index.tsx')
 +  index: resolver('index.jsx')
@@ -96,29 +93,31 @@ const entry = {
 
 ...
 const plugins = [
-  ...
+   ...
 -  new ForkTsCheckerWebpackPlugin()
 ];
 
-...å
-const resolve = { 
+...
+const resolve = {
 -  plugins: [new TsconfigPathsPlugin()],
    extensions: ['.js', '.jsx', '.ts', '.tsx']
 };
 ```
-> Dont forget to rename your source files `*.tsx` to `*.jsx` 
+
+> Dont forget to rename your source files `*.tsx` to `*.jsx`
 
 #### Step 5:
 
 Now you can start the bundler using `npm start`
 
-> NOTE: please uninstall unnecessary libraries in node_modules after configuration
-
 #
 
 ### Contributing
 
-As the owner of this repository I really appreciate the knowledge, suggestions of other contributors who helps to make this boilerplate more cleaner and efficient
+As the owner of this repository I really appreciate the knowledge, suggestions of other contributors who helps to make this boilerplate more cleaner and efficient.
+
+But for now am too busy to collaborate with, so please report an issue just incase you see something wrong on the configuration, I do appreciate.
+
 #
 
 ### License
