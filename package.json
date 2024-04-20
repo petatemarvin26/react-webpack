@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "This boilerplate intended for react boilerplate from scratch using webpack",
   "author": "Marvin Petate",
   "license": "MIT",
@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
-    "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
@@ -36,6 +35,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/parser": "^7.7.0",
     "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.8.1",
