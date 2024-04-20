@@ -108,6 +108,39 @@ const resolve = {
 
 #### Step 5:
 
+Next is to setup your linting rules, I recommend to use [@babel/eslint-parser][babel-eslint-parser] with sample configuration
+
+```json
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "babelOptions": {
+      "configFile": "./config/.babelrc"
+    },
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": ["react"],
+  "extends": ["plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "warn",
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "single"],
+    ...
+  }
+}
+```
+
+#### Step 6:
+
 Now you can start the bundler using `npm start`
 
 #
@@ -127,3 +160,4 @@ Distributed under the MIT License. See LICENSE for more information.
 [Webpack Documentation]: https://webpack.js.org/guide
 [webpack.config.js]: /config/webpack/webpack.config.js
 [config/.babelrc]: /config/.babelrc
+[babel-eslint-parser]: https://www.npmjs.com/package/@babel/eslint-parser
