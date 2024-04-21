@@ -4,12 +4,12 @@
 
 This boilerplate was written by **Marvin Petate**
 
-### Goals
+### Goal
 
 This project aims to give understanding to our Web Developers how to setup
 React Application from scratch with organized development configuration.
 
-This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth development process to our developers and make them selves familliar with in bundler.
+This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth development process to our developers and make themselves familliar with in bundler.
 
 #
 
