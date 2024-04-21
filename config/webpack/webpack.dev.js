@@ -58,7 +58,7 @@ module.exports = (env) => {
             options: {
               esModule: true,
               modules: {
-                localIdentName: '[local]'
+                localIdentName: '[hash:5]_[local]'
               }
             }
           }
