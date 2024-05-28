@@ -17,7 +17,7 @@ module.exports = (env) => {
    * @type {import('webpack').Configuration['output']}
    */
   const output = {
-    filename: `static/js/index.[contenthash:10].js`,
+    filename: `static/js/index.[contenthash:5].js`,
     path: resolver('build')
   };
 
@@ -62,7 +62,6 @@ module.exports = (env) => {
           {
             loader: 'css-loader',
             options: {
-              esModule: true,
               modules: {
                 localIdentName: '[hash:10]'
               }
@@ -78,7 +77,6 @@ module.exports = (env) => {
    */
   const plugins = [
     new HtmlWebpackPlugin({
-      PUBLIC_URL: env.PUBLIC_URL,
       publicPath: env.PUBLIC_URL,
       template: resolver('public/index.html')
     }),

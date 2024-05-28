@@ -7,9 +7,12 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const ROOT_DIR = path.resolve(__dirname, '../..');
 
+const CSS_FILE = /\.(css)$/;
+const SCSS_FILE = /\.(scss)$/;
+const STYLE_FILE = [CSS_FILE, SCSS_FILE];
+
 const JS_FILE = /\.(js|jsx)$/;
 const TS_FILE = /\.(ts|tsx)$/;
-const STYLE_FILE = /\.(css|scss)$/i;
 const SRC_FILE = [JS_FILE, TS_FILE];
 
 const IMG_FILE = /\.(jpg|png|gif|webp)$/;
