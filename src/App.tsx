@@ -1,7 +1,7 @@
-import styles from './App.module.css';
+import styles from './styles.css';
 
 const App: React.FC = () => {
-  return <div className={styles['main']}>HELLO WORLD!</div>;
+  return <div className={styles['app']}>HELLO WORLD!</div>;
 };
 
 export default App;

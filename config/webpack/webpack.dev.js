@@ -56,8 +56,8 @@ module.exports = (env) => {
           {
             loader: 'css-loader',
             options: {
-              esModule: true,
               modules: {
+                namedExport: false,
                 localIdentName: '[hash:5]_[local]'
               }
             }
@@ -72,7 +72,7 @@ module.exports = (env) => {
    */
   const plugins = [
     new HtmlWebpackPlugin({
-      PUBLIC_URL: '.',
+      publicPath: '.',
       template: resolver('public/index.html')
     }),
     new ReactRefreshWebpackPlugin()
