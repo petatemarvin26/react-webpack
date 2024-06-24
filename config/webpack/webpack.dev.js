@@ -1,8 +1,6 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const {SRC_FILE, SVG_FILE, IMG_FILE, STYLE_FILE} = require('./constants');
-const {resolver} = require('./utils');
+const {babelLoader, imageLoader, svgLoader, styleLoader} = require('./common');
 
 /**
  * @param {object} env
@@ -29,54 +27,17 @@ module.exports = (env) => {
    */
   const modules = {
     rules: [
-      {
-        test: SRC_FILE,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          configFile: resolver('config/.babelrc'),
-          plugins: [require.resolve('react-refresh/babel')]
-        }
-      },
-      {
-        test: IMG_FILE,
-        type: 'asset/resource',
-        generator: {
-          filename: '[name][ext]'
-        }
-      },
-      {
-        test: SVG_FILE,
-        use: ['@svgr/webpack', 'file-loader']
-      },
-      {
-        test: STYLE_FILE,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                namedExport: false,
-                localIdentName: '[hash:5]_[local]'
-              }
-            }
-          }
-        ]
-      }
+      babelLoader(true),
+      imageLoader(true),
+      svgLoader(true),
+      styleLoader(true)
     ]
   };
 
   /**
    * @type {import('webpack').Configuration['plugins']}
    */
-  const plugins = [
-    new HtmlWebpackPlugin({
-      publicPath: '.',
-      template: resolver('public/index.html')
-    }),
-    new ReactRefreshWebpackPlugin()
-  ];
+  const plugins = [new ReactRefreshWebpackPlugin()];
 
   return {
     devtool: 'eval-source-map',

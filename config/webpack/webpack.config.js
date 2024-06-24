@@ -1,12 +1,13 @@
 const {merge} = require('webpack-merge');
 const {DefinePlugin} = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
-const {getEnv, resolver} = require('./utils');
+const {getEnv, resolver} = require('./common');
 
 /**
  *
@@ -15,6 +16,7 @@ const {getEnv, resolver} = require('./utils');
  */
 module.exports = (webpack_env) => {
   const env = getEnv(webpack_env);
+  const isdev = !webpack_env.WEBPACK_SERVE;
 
   /**
    * @type {import('webpack').Configuration['entry']}
@@ -26,6 +28,10 @@ module.exports = (webpack_env) => {
    * @type {import('webpack').Configuration['plugins']}
    */
   const plugins = [
+    new HtmlWebpackPlugin({
+      publicPath: isdev ? '.' : env.PUBLIC_URL,
+      template: resolver('public/index.html')
+    }),
     new DefinePlugin({'process.env': JSON.stringify(env)}),
     new ESLintPlugin({
       overrideConfigFile: resolver('config/.eslintrc'),
