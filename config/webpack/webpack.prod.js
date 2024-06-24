@@ -1,12 +1,19 @@
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
-const {resolver, copyFilter, assetOutputPath} = require('./utils');
-const {SRC_FILE, STYLE_FILE, IMG_FILE, SVG_FILE} = require('./constants');
+const {
+  SRC_FILE,
+  STYLE_FILE,
+  resolver,
+  copyFilter,
+  babelLoader,
+  imageLoader,
+  svgLoader,
+  styleLoader
+} = require('./common');
 
 /**
  * @param {object} env
@@ -26,49 +33,10 @@ module.exports = (env) => {
    */
   const modules = {
     rules: [
-      {
-        test: SRC_FILE,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          configFile: resolver('config/.babelrc')
-        }
-      },
-      {
-        test: IMG_FILE,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-          outputPath: assetOutputPath
-        }
-      },
-      {
-        test: SVG_FILE,
-        use: [
-          '@svgr/webpack',
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              emitFile: false
-            }
-          }
-        ]
-      },
-      {
-        test: STYLE_FILE,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[hash:10]'
-              }
-            }
-          }
-        ]
-      }
+      babelLoader(false),
+      imageLoader(false),
+      svgLoader(false),
+      styleLoader(false)
     ]
   };
 
@@ -76,10 +44,6 @@ module.exports = (env) => {
    * @type {import('webpack').Configuration['plugins']}
    */
   const plugins = [
-    new HtmlWebpackPlugin({
-      publicPath: env.PUBLIC_URL,
-      template: resolver('public/index.html')
-    }),
     new CopyPlugin({
       patterns: [
         {

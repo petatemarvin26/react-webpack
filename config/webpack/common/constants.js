@@ -5,7 +5,7 @@ const HOST = process.env.HOST || 'localhost';
 const VERSION = process.env.npm_package_version;
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
-const ROOT_DIR = path.resolve(__dirname, '../..');
+const ROOT_DIR = path.resolve(__dirname, '../../..');
 
 const CSS_FILE = /\.(css)$/;
 const SCSS_FILE = /\.(scss)$/;
