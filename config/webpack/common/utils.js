@@ -3,7 +3,6 @@ const {
   ROOT_DIR,
   SVG_FILE,
   IMG_FILE,
-  PUBLIC_URL,
   VERSION,
   PORT,
   HOST
