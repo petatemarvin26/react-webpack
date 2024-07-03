@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const {SRC_FILE, IMG_FILE, SVG_FILE, STYLE_FILE} = require('./constants');
+const {SRC, IMG, SVG, STYLE} = require('./constants');
 const {assetOutputPath, resolver} = require('./utils');
 
 /**
@@ -9,7 +9,7 @@ const {assetOutputPath, resolver} = require('./utils');
  */
 const babelLoader = (isdev) => {
   return {
-    test: SRC_FILE,
+    test: SRC,
     exclude: /node_modules/,
     loader: 'babel-loader',
     options: {
@@ -24,7 +24,7 @@ const babelLoader = (isdev) => {
  * @returns {object} rules set for assets
  */
 const imageLoader = (isdev) => {
-  const rule = {test: IMG_FILE};
+  const rule = {test: IMG};
 
   if (isdev) {
     rule.type = 'asset/resource';
@@ -49,7 +49,7 @@ const imageLoader = (isdev) => {
  */
 const svgLoader = (isdev) => {
   const rule = {
-    test: SVG_FILE,
+    test: SVG,
     use: ['@svgr/webpack']
   };
 
@@ -74,7 +74,7 @@ const svgLoader = (isdev) => {
  */
 const styleLoader = (isdev) => {
   return {
-    test: STYLE_FILE,
+    test: STYLE,
     use: [
       isdev ? 'style-loader' : MiniCssExtractPlugin.loader,
       {

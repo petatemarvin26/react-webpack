@@ -7,17 +7,22 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 
 const ROOT_DIR = path.resolve(__dirname, '../../..');
 
-const CSS_FILE = /\.(css)$/;
-const SCSS_FILE = /\.(scss)$/;
-const STYLE_FILE = [CSS_FILE, SCSS_FILE];
+const CSS = /\.(css)$/;
+const SCSS = /\.(scss)$/;
+const STYLE = [CSS, SCSS];
 
-const JS_FILE = /\.(js|jsx)$/;
-const TS_FILE = /\.(ts|tsx)$/;
-const SRC_FILE = [JS_FILE, TS_FILE];
+const JS = /\.(js|jsx)$/;
+const TS = /\.(ts|tsx)$/;
+const SRC = [JS, TS];
 
-const IMG_FILE = /\.(jpg|png|gif|webp)$/;
-const SVG_FILE = /\.(svg)$/;
-const ASSET_FILE = [IMG_FILE, SVG_FILE];
+const JPG = /\.(jpg|jpeg)$/;
+const PNG = /\.(png)$/;
+const GIF = /\.(gif)$/;
+const WEBP = /\.(webp)$/;
+const IMG = [JPG, PNG, GIF, WEBP];
+
+const SVG = /\.(svg)$/;
+const ASSET = [...IMG, SVG];
 
 module.exports = {
   ROOT_DIR,
@@ -25,11 +30,15 @@ module.exports = {
   PORT,
   HOST,
   PUBLIC_URL,
-  JS_FILE,
-  TS_FILE,
-  STYLE_FILE,
-  SRC_FILE,
-  IMG_FILE,
-  SVG_FILE,
-  ASSET_FILE
+  JS,
+  TS,
+  STYLE,
+  SRC,
+  JPG,
+  PNG,
+  GIF,
+  WEBP,
+  IMG,
+  SVG,
+  ASSET
 };
