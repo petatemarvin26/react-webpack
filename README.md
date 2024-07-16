@@ -9,7 +9,7 @@ This boilerplate was written by **Marvin Petate**
 This project aims to give understanding to our Web Developers how to setup
 React Application from scratch with organized development configuration.
 
-This configuration was based on [Webpack Documentation] followed the standard and best practices that requires by Webpack, to have smooth development process to our developers and make themselves familliar with in bundler.
+This configuration was based on [Webpack Documentation] follow the standard and best practices that recommend by Webpack, the general objective of this project is to provide light weight configuration for react development and give themselves familiarities on how webpack work.
 
 #
 
