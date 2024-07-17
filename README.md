@@ -1,4 +1,4 @@
-# React with Webpack Setup
+# React with Webpack
 
 ### Author
 
