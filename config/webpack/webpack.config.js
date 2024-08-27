@@ -16,7 +16,7 @@ const {getEnv, resolver} = require('./common');
  */
 module.exports = (webpack_env) => {
   const env = getEnv(webpack_env);
-  const isdev = !webpack_env.WEBPACK_SERVE;
+  const isdev = webpack_env.WEBPACK_SERVE;
 
   /**
    * @type {import('webpack').Configuration['entry']}
