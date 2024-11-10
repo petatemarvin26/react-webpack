@@ -1,12 +1,5 @@
-const {config} = require('dotenv');
-const {
-  ROOT_DIR,
-  SVG_FILE,
-  IMG_FILE,
-  VERSION,
-  PORT,
-  HOST
-} = require('./constants');
+const dotenv = require('dotenv');
+const {ROOT_DIR, SVG_FILE, IMG_FILE, VERSION} = require('./constants');
 
 /**
  * @param {string} path
@@ -48,39 +41,9 @@ const copyFilter = (resourcePath) => {
   return true;
 };
 
-const getPublicUrl = (env) => {
-  const host = env.HOST || HOST;
-  const port = env.PORT || PORT;
-  const public_url = env.PUBLIC_URL;
-  return public_url ? public_url : `http://${host}:${port}`;
-};
-
-const getNodeEnv = (is_dev) => {
-  return is_dev ? 'development' : 'production';
-};
-
-const getEnv = (wp_env) => {
-  const {variant, WEBPACK_SERVE} = wp_env;
-  const env_file = variant ? `.env.${variant}` : '.env';
-
-  const env = config({path: resolver(env_file)});
-
-  let vars = {
-    PUBLIC_URL: getPublicUrl(wp_env),
-    VERSION,
-    PORT,
-    HOST,
-    ...process.env
-  };
-  if (!env.error) {
-    vars = {
-      ...vars,
-      ...env.parsed,
-      PUBLIC_URL: getPublicUrl(env.parsed),
-      NODE_ENV: getNodeEnv(WEBPACK_SERVE)
-    };
-  }
-  return vars;
+const getEnv = () => {
+  const vars = dotenv.config({path: resolver('.env')});
+  return {VERSION, ...vars.parsed, ...process.env};
 };
 
 module.exports = {
