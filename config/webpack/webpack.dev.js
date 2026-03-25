@@ -10,6 +10,7 @@ module.exports = (env) => {
   /**
    * @type {import('webpack').WebpackOptionsNormalized['devServer']}
    */
+  console.log(env.PORT);
   const devServer = {
     port: env.PORT,
     compress: true,
