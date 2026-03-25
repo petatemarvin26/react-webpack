@@ -1,5 +1,13 @@
 const dotenv = require('dotenv');
-const {ROOT_DIR, SVG_FILE, IMG_FILE, VERSION} = require('./constants');
+const {
+  ROOT_DIR,
+  SVG_FILE,
+  IMG_FILE,
+  VERSION,
+  PUBLIC_URL,
+  HOST,
+  PORT
+} = require('./constants');
 
 /**
  * @param {string} path
@@ -42,8 +50,8 @@ const copyFilter = (resourcePath) => {
 };
 
 const getEnv = () => {
-  const vars = dotenv.config({path: resolver('.env')});
-  return {VERSION, ...vars.parsed, ...process.env};
+  const vars = dotenv.config();
+  return {...vars.parsed, ...process.env, VERSION, PUBLIC_URL, HOST, PORT};
 };
 
 module.exports = {

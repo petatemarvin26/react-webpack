@@ -29,7 +29,7 @@ module.exports = (webpack_env) => {
    */
   const plugins = [
     new HtmlWebpackPlugin({
-      publicPath: isdev ? '.' : env.PUBLIC_URL,
+      publicPath: env.PUBLIC_URL,
       template: resolver('public/index.html')
     }),
     new DefinePlugin({'process.env': JSON.stringify(env)}),
@@ -69,6 +69,9 @@ module.exports = (webpack_env) => {
       }
     }
   };
+  /**
+   * @type {import('webpack').Configuration['output']}
+   */
 
   /**
    * @type {import('webpack').Configuration}
@@ -82,7 +85,7 @@ module.exports = (webpack_env) => {
     optimization
   };
 
-  if (!webpack_env.WEBPACK_SERVE) {
+  if (!isdev) {
     config.mode = 'production';
     return merge(config, prodConfig(env));
   }
