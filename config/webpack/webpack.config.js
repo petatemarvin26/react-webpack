@@ -18,10 +18,6 @@ module.exports = (webpack_env) => {
   const env = getEnv(webpack_env);
   const isdev = webpack_env.WEBPACK_SERVE;
 
-  console.log('VERSION', env.VERSION);
-  console.log('PUBLIC_URL', env.PUBLIC_URL);
-  console.log('NEW_VAR', env.NEW_VAR);
-
   /**
    * @type {import('webpack').Configuration['entry']}
    */
