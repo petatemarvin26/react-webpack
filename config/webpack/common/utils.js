@@ -1,4 +1,3 @@
-const dotenv = require('dotenv');
 const {
   ROOT_DIR,
   SVG_FILE,
@@ -50,8 +49,7 @@ const copyFilter = (resourcePath) => {
 };
 
 const getEnv = () => {
-  const vars = dotenv.config();
-  return {...vars.parsed, ...process.env, VERSION, PUBLIC_URL, HOST, PORT};
+  return {...process.env, VERSION, PUBLIC_URL, HOST, PORT};
 };
 
 module.exports = {
