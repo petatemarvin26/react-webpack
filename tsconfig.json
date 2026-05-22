@@ -1,15 +1,28 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "rootDir": "./src",
     "outDir": "./build",
-    "target": "ES5",
-    "module": "ESNext",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "target": "esnext",
+    "module": "esnext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react-jsx",
-    "moduleResolution": "Node"
+    "moduleResolution": "bundler"
   },
-  "include": ["*.tsx", "*.jsx", "./src/**/*", "./module.d.ts"],
-  "exclude": ["node_modules", "build"]
+  "include": [
+    "*.tsx",
+    "*.jsx",
+    "./src/**/*",
+    "./module.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build"
+  ]
 }

@@ -34,7 +34,7 @@ module.exports = (webpack_env) => {
     }),
     new DefinePlugin({'process.env': JSON.stringify(env)}),
     new ESLintPlugin({
-      overrideConfigFile: resolver('config/.eslintrc'),
+      overrideConfigFile: resolver('config/.eslintrc.cjs'),
       extensions: ['.ts', '.tsx', '.js', '.jsx']
     }),
     new ForkTsCheckerWebpackPlugin()
