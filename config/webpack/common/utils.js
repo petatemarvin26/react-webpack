@@ -1,7 +1,7 @@
 const {
   ROOT_DIR,
-  SVG_FILE,
-  IMG_FILE,
+  SVG,
+  IMG,
   VERSION,
   PUBLIC_URL,
   HOST,
@@ -28,10 +28,10 @@ const is = (file, regex) => regex.test(file);
  * @returns
  */
 const assetOutputPath = (url, resource) => {
-  if (is(resource, SVG_FILE)) {
+  if (is(resource, SVG)) {
     return `static/media/svg/${url}`;
   }
-  if (is(resource, IMG_FILE)) {
+  if (is(resource, IMG)) {
     return `static/media/image/${url}`;
   }
   return `static/media/others/${url}`;

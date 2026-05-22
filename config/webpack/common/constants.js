@@ -22,6 +22,7 @@ const JPG = /\.(jpg|jpeg)$/;
 const PNG = /\.(png)$/;
 const GIF = /\.(gif)$/;
 const WEBP = /\.(webp)$/;
+const IMG_REG = /\.(jpg|jpeg|png|gif|webp)$/;
 const IMG = [JPG, PNG, GIF, WEBP];
 
 const SVG = /\.(svg)$/;
@@ -42,6 +43,7 @@ module.exports = {
   GIF,
   WEBP,
   IMG,
+  IMG_REG,
   SVG,
   ASSET
 };
