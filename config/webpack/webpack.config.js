@@ -1,3 +1,5 @@
+const path = require('path');
+
 const {merge} = require('webpack-merge');
 const {DefinePlugin} = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -5,6 +7,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
+const ServiceWorkerPlugin = require('./common/ServiceWorkerPlugin');
 const devConfig = require('./webpack.dev');
 const prodConfig = require('./webpack.prod');
 const {getEnv, resolver} = require('./common');
@@ -37,7 +40,8 @@ module.exports = (webpack_env) => {
       overrideConfigFile: resolver('config/.eslintrc.cjs'),
       extensions: ['.ts', '.tsx', '.js', '.jsx']
     }),
-    new ForkTsCheckerWebpackPlugin()
+    new ForkTsCheckerWebpackPlugin(),
+    new ServiceWorkerPlugin()
   ];
 
   /**
