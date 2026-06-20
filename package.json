@@ -1,6 +1,6 @@
 {
   "name": "react-webpack",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This boilerplate intended for react project",
   "author": {
     "email": "petatemarvin26@gmail.com",
@@ -54,6 +54,8 @@
     "html-webpack-plugin": "^5.6.7",
     "mini-css-extract-plugin": "^2.10.2",
     "react-refresh": "^0.18.0",
+    "sass": "^1.100.0",
+    "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",

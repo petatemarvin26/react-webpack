@@ -83,10 +83,11 @@ const styleLoader = (isdev) => {
           modules: {
             namedExport: false,
             exportLocalsConvention: (n) => n,
-            localIdentName: isdev ? '[hash:5]_[local]' : '[hash:10]'
+            localIdentName: isdev ? '[hash:5]_[local]' : '[local]'
           }
         }
-      }
+      },
+      'sass-loader'
     ]
   };
 };

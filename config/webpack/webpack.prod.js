@@ -83,7 +83,6 @@ module.exports = (env) => {
   };
 
   return {
-    devtool: 'source-map',
     output,
     module: modules,
     plugins,
