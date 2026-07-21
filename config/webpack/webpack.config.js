@@ -13,6 +13,11 @@ const prodConfig = require('./webpack.prod');
 const {getEnv, resolver} = require('./common');
 
 /**
+ * TODO:
+ * - clean all injected files
+ */
+
+/**
  *
  * @param {object} webpack_env
  * @returns {import('webpack').Configuration}

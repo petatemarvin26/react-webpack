@@ -7,13 +7,16 @@
         "./src/*"
       ]
     },
-    "target": "esnext",
-    "module": "esnext",
+    "types": [
+      "node"
+    ],
+    "target": "ES6",
+    "module": "NodeNext",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react-jsx",
-    "moduleResolution": "bundler"
+    "moduleResolution": "NodeNext"
   },
   "include": [
     "*.tsx",
