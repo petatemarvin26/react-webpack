@@ -1,0 +1,31 @@
+.landing {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  .ellipsis {
+    width: 1.2em;
+  }
+
+  .ellipsis::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+}
+
+@keyframes dots {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}

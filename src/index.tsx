@@ -1,8 +1,17 @@
 import ReactDOM from 'react-dom/client';
+import {Provider} from 'react-redux';
 
-import App from '@/App';
+import {store, history} from '@/ducks';
+import {apiConfig} from './api';
+import Navigator from './navigator';
 
 const body = document.getElementById('root') as HTMLDivElement;
 const container = ReactDOM.createRoot(body);
 
-container.render(<App />);
+apiConfig(store);
+
+container.render(
+  <Provider store={store}>
+    <Navigator history={history} />
+  </Provider>
+);
