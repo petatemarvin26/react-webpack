@@ -1,5 +1,6 @@
 # dist or buil production
 build
+public/sw.js
 
 # dependencies
 node_modules
