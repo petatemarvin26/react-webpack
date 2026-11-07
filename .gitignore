@@ -10,4 +10,4 @@ node_modules
 
 # test chunks
 test
-
+public/sw.js
